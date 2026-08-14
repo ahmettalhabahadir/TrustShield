@@ -53,24 +53,3 @@ Information Online, arXiv:2502.13322, Erişim: 14.08.2026, https://arxiv.org/abs
 [11] Rossi, E., Chamberlain, B., Frasca, F., Eynard, D., Monti, F., Bronstein, M.,
 (2020) Temporal Graph Networks for Deep Learning on Dynamic Graphs, arXiv:2006.10637,
 Erişim: 14.08.2026, https://arxiv.org/abs/2006.10637
-
----
-
-## Atıfların bölümlere dağılımı
-
-Aşağıdaki tablo, her kaynağın raporda nerede kullanıldığını gösterir. Kullanılmayan kaynak
-listelemeyin; kontrol listesi "eksiksiz listeleme" istiyor, şişirme istemiyor.
-
-| Kaynak | Kullanıldığı bölümler |
-|---|---|
-| [1] WEF | 2.1 |
-| [2] TÜİK | 2.1, 4.2, 5.1 |
-| [3] Vosoughi vd. | 2.1 |
-| [4] Europol | 2.1, 5.1 |
-| [5] Reuters Institute — Türkiye | 2.1, 4.2, 5.1 |
-| [6] Reuters Institute — Genel | 2.1 |
-| [7] ACM Web Conference | 2.1, 2.2, 3.1, 4.3, 5.1 |
-| [8] Community Notes — kapsam | 2.1 |
-| [9] Community Notes — etki | 2.1 |
-| [10] Ahrefs | 2.1 |
-| [11] TGN | 3.2 (isteğe bağlı — çizge modeli anlatımında kullanın) |
