@@ -1,0 +1,38 @@
+# Yarışma dokümanları — repoda tutulmaz (taslak rapor herkese açık olmamalı)
+*.docx
+*.pdf
+~$*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+build/
+.next/
+
+# Ortam değişkenleri ve gizli anahtarlar
+.env
+.env.*
+*.key
+secrets/
+
+# Model ağırlıkları ve veri
+*.pt
+*.pth
+*.onnx
+*.bin
+data/raw/
+data/interim/
+
+# Editör / işletim sistemi
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
