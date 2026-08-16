@@ -25,11 +25,13 @@ denetimli katmanda birleştirir.
 
 ### Amaç
 
-Projenin amacı, kullanıcıya neyin doğru olduğunu söylemek değil, karar verebilmesi için
-gereken bağlamı erişilebilir kılmaktır. Bu ayrım projenin tasarım felsefesinin merkezindedir:
-sistem bir hakem değil, bir kanıt sunucusudur. Ölçülebilir biçimde ifade edildiğinde amaç
-şudur: kullanıcının gördüğü her içerik için güvenilirlik, köken, yayılım bütünlüğü ve
-gösterim gerekçesi bilgisini, kullanıcıdan ek çaba beklemeden ve akışı bekletmeden sunmak.
+:::TASARIM İLKESİ
+Sistem bir hakem değil, bir kanıt sunucusudur. Kullanıcıya neyin doğru olduğunu söylemez; karar verebilmesi için gereken bağlamı erişilebilir kılar.
+:::
+
+Bu ayrım projenin tasarım felsefesinin merkezindedir ve ölçülebilir bir hedefe dönüşür:
+kullanıcının gördüğü her içerik için güvenilirlik, köken, yayılım bütünlüğü ve gösterim
+gerekçesi bilgisini, kullanıcıdan ek çaba beklemeden ve akışı bekletmeden sunmak.
 
 İkinci amaç, kullanıcının kendi akışı üzerindeki denetimi geri kazanmasıdır. Sistem içerik
 silmez; kullanıcı, hangi tür içeriğin nasıl sıralanacağını doğal dille tanımlar ve verdiği
@@ -118,6 +120,8 @@ uygulanabilir bir yöntem önerisi sunmaktadır.
 
 ### Problemin tanımı ve büyüklüğü
 
+![Şekil 5. Problemin ölçeğini gösteren temel göstergeler](gorseller/g5-problem-rakamlari.png)
+
 Yanlış bilgi ve dezenformasyon, Dünya Ekonomik Forumu'nun 2026 Küresel Riskler Raporu'nda
 kısa vadeli en ciddi küresel riskler arasında ikinci sırada yer almış; 67 ülkede ilk on risk
 arasında gösterilmiştir [1]. Rapor, bu riskin diğer risklerin tamamını hızlandıran bir etken
@@ -146,9 +150,9 @@ yükselmiş; en çok kullanılan uygulamalar sırasıyla %88,6 ile WhatsApp, %72
 üzerinden paylaşır hâle gelmiştir [5]. Küresel ölçekte katılımcıların %58'i çevrimiçi
 haberlerde neyin gerçek neyin sahte olduğu konusunda endişe duyduğunu belirtmektedir [6].
 
-Problem dört boyutta somutlaşmaktadır: iddianın doğruluğu ve kaynakla uyumu bilinmemekte;
-içeriğin kökeni belirsiz kalmakta; yayılımın organik mi koordineli mi olduğu ayırt
-edilememekte; ve içeriğin kullanıcıya neden gösterildiği açıklanmamaktadır.
+:::PROBLEMİN DÖRT BOYUTU
+İddianın doğruluğu ve kaynakla uyumu bilinmiyor · İçeriğin kökeni belirsiz · Yayılımın organik mi koordineli mi olduğu ayırt edilemiyor · İçeriğin kullanıcıya neden gösterildiği açıklanmıyor
+:::
 
 ### Mevcut çözümler ve yetersizlikleri
 

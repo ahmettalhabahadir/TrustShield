@@ -82,8 +82,7 @@ yardım çağrıları ve eski görüntülerin güncelmiş gibi paylaşılması h
 kurtarma ekiplerini yanlış yönlendirir. TrustShield bu içeriklerde görselin ilk yayın
 tarihini ve kökenini işaretler, resmî kaynakla eşleşmeyen çağrıları kanıt uyumsuzluğu
 olarak gösterir ve aynı içeriğin kısa aralıklarla çok sayıda hesap tarafından paylaşıldığı
-durumlarda koordinasyon uyarısı üretir. Kritik nokta, sistemin içeriği silmemesi, yalnızca
-bağlamı eklemesidir: gerçek bir yardım çağrısının yanlışlıkla engellenmesi riski doğmaz.
+durumlarda koordinasyon uyarısı üretir. 
 
 **Sağlık bilgisi.** Tedavi, beslenme ve ilaç kullanımına dair iddialar, bireysel sağlık
 kararlarını doğrudan etkiler. Sistemin iddia çıkarımı ve kanıt eşleştirme katmanı, bir
@@ -103,6 +102,10 @@ bırakır. Avrupa Birliği kurumlarının değerlendirmesine göre çevrimiçi i
 kadar %90'a varan oranda sentetik olarak üretilmesi öngörülmektedir [4]. Köken
 doğrulamasının içeriğin yanında görünür olması, bu tür içeriklerin yayılmadan önce
 sorgulanmasını sağlar.
+
+:::KRİTİK TASARIM KARARI
+Sistem içeriği silmez, yalnızca bağlam ekler. Afet gibi kritik senaryolarda bu, gerçek bir yardım çağrısının yanlışlıkla engellenmesi riskini ortadan kaldırır.
+:::
 
 ### Dijital yaşam kalitesine etkisi
 

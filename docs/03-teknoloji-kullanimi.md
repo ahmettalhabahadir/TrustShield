@@ -195,10 +195,9 @@ doğruluktan daha belirleyicidir. İkincisi, **yanlış pozitif oranının** ayr
 ölçütü sayılmasıdır; doğru bir içeriğin şüpheli olarak işaretlenmesinin maliyeti, şüpheli
 bir içeriğin gözden kaçmasının maliyetinden yüksektir.
 
-Sistemin çıktı kümesinde **"yetersiz kanıt"** birinci sınıf bir sonuçtur. Model, kanıt
-düzeyi eşiğin altında kaldığında sınıflandırma yapmak yerine çekimser kalır ve bunu
-kullanıcıya açıkça bildirir. Skorlar nokta değer olarak değil, güven aralığıyla birlikte
-üretilir.
+:::ÇEKİMSERLİK İLKESİ
+"Yetersiz kanıt" sistemin çıktı kümesinde birinci sınıf bir sonuçtur. Kanıt düzeyi eşiğin altında kaldığında model sınıflandırma yapmak yerine çekimser kalır; skorlar nokta değer olarak değil güven aralığıyla üretilir.
+:::
 
 ### Düşmanca dayanıklılık
 
@@ -217,6 +216,8 @@ düşmanca örneklerle sınanmaktadır.
 ## 3.3. Kullanıcı Deneyimi (UI/UX) Tasarımı
 
 ### Kullanıcı akışları
+
+![Şekil 6. Üç temel kullanıcı akışı](gorseller/g6-kullanici-akislari.png)
 
 **Akış 1 — Bağlam edinme.** Kullanıcı akışında bir gönderiyle karşılaşır → gönderinin
 altında ayrıştırılmış güven kartı görünür → kullanıcı "Kanıt" düğmesine dokunur → gönderideki

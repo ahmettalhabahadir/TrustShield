@@ -238,3 +238,77 @@ fig.savefig(os.path.join(CIK, 'g4-is-paketleri.png'), dpi=300,
 plt.close(fig)
 
 print('4 gorsel uretildi ->', CIK)
+
+# ==========================================================
+# G5 — PROBLEMIN RAKAMLARI (istatistik seridi)
+# ==========================================================
+fig, ax = plt.subplots(figsize=(16 * CM, 5.0 * CM))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
+
+istatistik = [
+    ('%90,9', 'Türkiye’de 16–74 yaş\ninternet kullanımı', 'TÜİK 2025', LACI),
+    ('%33', 'Habere güven — 2015’ten\nbu yana en düşük', 'Reuters Institute', MAVI),
+    ('%70', 'Yanlış haberin fazladan\nyeniden paylaşılma olasılığı', 'Science, 2018', AMBER),
+    ('15,5 sa', 'Topluluk notunun görünür\nolmasına kadar geçen süre', 'arXiv, 2025', KIRMIZI),
+]
+gen, bosl = 22.5, 3.0
+x0 = (100 - (4 * gen + 3 * bosl)) / 2
+for i, (deger, aciklama, kaynak, renk) in enumerate(istatistik):
+    x = x0 + i * (gen + bosl)
+    ax.add_patch(FancyBboxPatch((x, 6), gen, 88,
+                                boxstyle='round,pad=0.01,rounding_size=0.03',
+                                facecolor='#FAFBFC', edgecolor='#DDE3EA',
+                                linewidth=1, zorder=1))
+    ax.add_patch(Rectangle((x, 6), gen, 3.5, facecolor=renk, edgecolor='none', zorder=2))
+    ax.text(x + gen / 2, 72, deger, ha='center', va='center', fontsize=15,
+            color=renk, fontweight='bold')
+    ax.text(x + gen / 2, 44, aciklama, ha='center', va='center', fontsize=6.8,
+            color=LACI, linespacing=1.7)
+    ax.text(x + gen / 2, 16, kaynak, ha='center', va='center', fontsize=5.9,
+            color=GRI, style='italic')
+
+fig.tight_layout(pad=0.15)
+fig.savefig(os.path.join(CIK, 'g5-problem-rakamlari.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+
+# ==========================================================
+# G6 — KULLANICI AKISLARI
+# ==========================================================
+fig, ax = plt.subplots(figsize=(16 * CM, 8.2 * CM))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
+
+akislar = [
+    ('AKIŞ 1  ·  Bağlam edinme', MAVI,
+     ['Gönderi\ngörülür', 'Güven kartı\naçılır', 'İddialar ve\nkanıt', 'Karşı\ngörüşler']),
+    ('AKIŞ 2  ·  Akış politikası tanımlama', LACI,
+     ['Kullanıcı\ndoğal dille\nyazar', 'Sistem somut\npolitika önerir',
+      'Kullanıcı\nonaylar', 'Politika\nyürürlükte']),
+    ('AKIŞ 3  ·  Filtrelenenlerin denetimi', AMBER,
+     ['Çekmece\naçılır', 'Gerekçe\ngörünür', 'Tek işlemle\ngeri alma',
+      'Politika\ngevşetilir']),
+]
+for j, (baslik, renk, adimlar) in enumerate(akislar):
+    yust = 92 - j * 31
+    ax.add_patch(Rectangle((0, yust - 3.2), 2.4, 3.2, facecolor=renk, edgecolor='none'))
+    ax.text(4, yust - 1.6, baslik, ha='left', va='center', fontsize=7.4,
+            color=renk, fontweight='bold')
+    y = yust - 20
+    gen, bosl = 20.5, 5.5
+    for k, adim in enumerate(adimlar):
+        x = k * (gen + bosl)
+        ax.add_patch(FancyBboxPatch((x, y), gen, 13.5,
+                                    boxstyle='round,pad=0.01,rounding_size=0.025',
+                                    facecolor='white', edgecolor=renk,
+                                    linewidth=1.1, zorder=2))
+        ax.text(x + gen / 2, y + 6.75, adim, ha='center', va='center', fontsize=6.5,
+                color=LACI, zorder=3, linespacing=1.5)
+        if k < len(adimlar) - 1:
+            ok(ax, x + gen + 0.8, y + 6.75, x + gen + bosl - 0.8, y + 6.75, renk=renk, lw=1.1)
+
+fig.tight_layout(pad=0.15)
+fig.savefig(os.path.join(CIK, 'g6-kullanici-akislari.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+
+print('G5 ve G6 uretildi')
