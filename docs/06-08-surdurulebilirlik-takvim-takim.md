@@ -118,16 +118,7 @@ sunumları (14 Eylül 2026) tarihleriyle uyumlu olarak planlanmıştır.
 
 ### Zaman çizelgesi
 
-| İP | Tem 4 | Ağu 1 | Ağu 2 | Ağu 3 | Ağu 4 | Eyl 1 | Eyl 2 |
-|---|---|---|---|---|---|---|---|
-| İP-1 | ███ | ███ | | | | | |
-| İP-2 | | ███ | ███ | | | | |
-| İP-3 | | | ███ | ███ | ███ | | |
-| İP-4 | | | | ███ | ███ | ███ | ███ |
-| İP-5 | | | | ███ | ███ | ███ | ███ |
-| İP-6 | | | ███ | ███ | ███ | ███ | ███ |
-| İP-7 | | | | | ███ | ███ | ███ |
-| İP-8 | | | | ███ | ███ | ███ | ███ |
+![Şekil 4. İş paketleri zaman çizelgesi ve yarışma kilometre taşları](gorseller/g4-is-paketleri.png)
 
 > **[GÖRSEL: Bu tabloyu renkli bir Gantt grafiğine dönüştürün.** Kontrol listesinde
 > "görsel bir şema/tablo ile sunulmuş" maddesi 1 puandır; renkli çubuklu bir grafik,

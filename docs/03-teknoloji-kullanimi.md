@@ -31,38 +31,7 @@ Sistem, hesaplama maliyetini ve gecikmeyi denetim altında tutmak için kademeli
 kurgulanmıştır. Her gönderi tüm modellerden geçmez; yalnızca risk sinyali taşıyan içerik
 bir üst kademeye yükselir.
 
-```
-                       NSosyal İçerik Akışı
-                                │
-              ┌─────────────────▼─────────────────┐
-              │  KADEME 1 — Cihaz Üstü Ön Filtre  │   hafif sınıflandırıcı
-              │  Risk sinyali var mı?             │   akış durmaz
-              └─────────────────┬─────────────────┘
-                                │ sinyal varsa
-              ┌─────────────────▼─────────────────┐
-              │  KADEME 2 — Doğrulama Önbelleği   │   vektör arama
-              │  Bu iddia daha önce görüldü mü?   │   önbellek isabeti → sonuç döner
-              └─────────────────┬─────────────────┘
-                                │ isabet yoksa / içerik viralse
-              ┌─────────────────▼─────────────────┐
-              │  KADEME 3 — Derin Analiz (Sunucu) │
-              └─────────────────┬─────────────────┘
-                                │
-        ┌───────────────┬───────┴───────┬───────────────┐
-        ▼               ▼               ▼               ▼
-   Claim Engine   Origin Engine   Graph Engine   Manipulation Engine
-        │               │               │               │
-        └───────────────┴───────┬───────┴───────────────┘
-                                ▼
-                    Güven Kartı + Gerekçe Metni
-                                │
-              ┌─────────────────▼─────────────────┐
-              │  CİHAZ — Kullanıcı Tercih Modeli  │   kişisel veri cihazdan çıkmaz
-              │  Sıralama ve politika uygulaması  │
-              └─────────────────┬─────────────────┘
-                                ▼
-                          Kullanıcı Arayüzü
-```
+![Şekil 1. TrustShield kademeli sistem mimarisi ve sunucu–cihaz ayrımı](gorseller/g1-sistem-mimarisi.png)
 
 Mimarinin temel ayrımı şudur: **içerik düzeyindeki analiz sunucuda, gönderi başına bir kez**
 yapılır ve o gönderiyi gören tüm kullanıcılara ortak olarak sunulur; **kullanıcı düzeyindeki
@@ -266,6 +235,8 @@ geriye alındığı belirtilerek listelenir → kullanıcı tek işlemle içeri�
 veya politikayı gevşetebilir.
 
 ### Arayüz tasarım kararları
+
+![Şekil 3. Güven kartı arayüz taslağı: ayrıştırılmış boyutlar, gerekçe metni ve eylem düğmeleri](gorseller/g3-guven-karti.png)
 
 | Karar | Gerekçe |
 |---|---|
