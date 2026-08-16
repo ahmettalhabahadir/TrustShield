@@ -76,6 +76,8 @@ yoğunlaştığı, organik kullanıcıların ise güne yayıldığı akademik ol
 
 Sistemin toplumsal faydası, gerçek ve yüksek riskli bilgi ortamlarında somutlaşır.
 
+![Şekil 11. Dört yüksek riskli bilgi ortamında sistemin işleyişi](gorseller/g12-senaryolar.png)
+
 **Afet ve acil durumlar.** Deprem, sel ve yangın gibi afetlerin ilk saatlerinde
 doğrulanmamış bilgi en hızlı yayılan içerik türüdür; yanlış adres bilgileri, gerçek dışı
 yardım çağrıları ve eski görüntülerin güncelmiş gibi paylaşılması hem vatandaşı hem arama

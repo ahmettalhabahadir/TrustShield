@@ -38,7 +38,7 @@ göstermektedir. Varsayımlar platform verisiyle doğrulandıkça güncellenecek
 | Kademe 2 sonrası | Doğrulama önbelleği isabeti (%60) | 60.000 |
 | **Kademe 3 — derin analiz** | **LLM, görü ve çizge modelleri** | **60.000** |
 
-![Şekil 2. Kademeli filtrelemenin derin analize ulaşan içerik hacmine etkisi](gorseller/g2-kademeli-filtreleme.png)
+![Şekil 9. Kademeli mimarinin günlük işlem hacmine etkisi (logaritmik ölçek)](gorseller/g8-islem-hacmi.png)
 
 *Varsayımlar: günlük 1.000.000 gönderi, gönderi başına ortalama 50 gösterim, Kademe 1
 eleme oranı %85, önbellek isabet oranı %60.*
@@ -72,6 +72,8 @@ etkin olduğu ve olmadığı kullanıcı grupları arasında karşılaştırmal�
 ## 4.2. Hedef Kitle
 
 ### Tanım
+
+![Şekil 10. Üç kullanıcı katmanı ve erişim yapısı](gorseller/g9-hedef-kitle.png)
 
 Projenin hedef kitlesi üç katmanda tanımlanmıştır ve her katmanın sistemden beklediği
 fayda farklıdır.

@@ -120,7 +120,7 @@ uygulanabilir bir yöntem önerisi sunmaktadır.
 
 ### Problemin tanımı ve büyüklüğü
 
-![Şekil 5. Problemin ölçeğini gösteren temel göstergeler](gorseller/g5-problem-rakamlari.png)
+![Şekil 1. Problemin ölçeğini gösteren temel göstergeler](gorseller/g5-problem-rakamlari.png)
 
 Yanlış bilgi ve dezenformasyon, Dünya Ekonomik Forumu'nun 2026 Küresel Riskler Raporu'nda
 kısa vadeli en ciddi küresel riskler arasında ikinci sırada yer almış; 67 ülkede ilk on risk
@@ -209,16 +209,7 @@ moderasyonu araçlarından ayıran temel tasarım kararıdır.
 
 ### Mevcut çözümlerle karşılaştırma
 
-| Yetenek | TrustShield | Topluluk notları | Kaynak derecelendirme | YZ tespit servisleri | Bot tespit araçları |
-|---|---|---|---|---|---|
-| Gönderi düzeyinde iddia–kanıt eşleştirme | Var | Kısmen, gecikmeli | Yok | Yok | Yok |
-| Çok modlu köken analizi | Var | Yok | Yok | Kısmen, tek modal | Yok |
-| Kriptografik köken doğrulaması | Var | Yok | Yok | Yok | Yok |
-| Zamansal koordinasyon tespiti | Var | Yok | Yok | Yok | Kısmen, statik |
-| Gösterim gerekçesi açıklaması | Var | Yok | Yok | Yok | Yok |
-| Kullanıcı denetimli akış politikası | Var | Yok | Yok | Yok | Yok |
-| Gerçek zamanlı çalışma | Var | Yok, ortalama 15,5 saat | Var | Var | Var |
-| Olasılık kalibrasyonu ve çekimserlik | Var | Yok | Yok | Genellikle yok | Genellikle yok |
+![Şekil 2. TrustShield ile mevcut çözümlerin yetenek karşılaştırması](gorseller/g7-rakip-matrisi.png)
 
 ### Pazarda uygulanabilirlik
 

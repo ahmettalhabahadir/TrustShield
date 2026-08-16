@@ -16,11 +16,7 @@ yapıda kurgulanmıştır. Bu tercih ürünün amacıyla tutarlıdır: güvenili
 ödeme gücüne bağlı hâle gelmesi, sistemin en çok fayda sağlayacağı kesimi dışarıda
 bırakırdı.
 
-| Kanal | Müşteri | Ürün | Fiyatlama mantığı |
-|---|---|---|---|
-| Platform lisansı | NSosyal ve diğer sosyal medya platformları | Alt sistem olarak bütünleşik güven katmanı | Aktif kullanıcı başına yıllık lisans |
-| Kurumsal API | Medya kuruluşları, kamu iletişim birimleri, marka itibar ekipleri | İddia doğrulama ve koordineli yayılım tespiti servisi | Çağrı hacmine dayalı kademeli abonelik |
-| İleri kullanıcı katmanı | Son kullanıcı | Temel katman ücretsiz; geçmiş analiz, ayrıntılı raporlama ve gelişmiş politika araçları abonelikle | Aylık abonelik |
+![Şekil 12. Üç kanallı gelir modeli](gorseller/g13-gelir-modeli.png)
 
 Birincil kanal platform lisansıdır; ürün NSosyal için geliştirildiğinden ilk müşteri ile
 ilk kullanıcı kitlesi aynı entegrasyonla kazanılır. Kurumsal API kanalı ise aynı
@@ -55,6 +51,8 @@ girişimlerle uyumluluk çalışmaları.
 ## 6.2. Finansal, Teknik ve Sosyal Sürdürülebilirlik
 
 ### Finansal sürdürülebilirlik
+
+![Şekil 13. Önbellek isabet oranı ile birim maliyet ilişkisi](gorseller/g14-birim-maliyet.png)
 
 Sistemin işletme maliyeti, kademeli mimari sayesinde kullanıcı sayısıyla doğrusal olarak
 artmaz. Maliyet, gösterim sayısına değil benzersiz iddia sayısına bağlıdır; kullanıcı
@@ -118,7 +116,7 @@ sunumları (14 Eylül 2026) tarihleriyle uyumlu olarak planlanmıştır.
 
 ### Zaman çizelgesi
 
-![Şekil 4. İş paketleri zaman çizelgesi ve yarışma kilometre taşları](gorseller/g4-is-paketleri.png)
+![Şekil 14. İş paketleri zaman çizelgesi ve yarışma kilometre taşları](gorseller/g4-is-paketleri.png)
 
 > **[GÖRSEL: Bu tabloyu renkli bir Gantt grafiğine dönüştürün.** Kontrol listesinde
 > "görsel bir şema/tablo ile sunulmuş" maddesi 1 puandır; renkli çubuklu bir grafik,

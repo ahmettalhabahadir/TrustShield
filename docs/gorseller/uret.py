@@ -312,3 +312,286 @@ fig.savefig(os.path.join(CIK, 'g6-kullanici-akislari.png'), dpi=300,
 plt.close(fig)
 
 print('G5 ve G6 uretildi')
+
+# ==========================================================
+# G7 — RAKIP KARSILASTIRMA MATRISI
+# ==========================================================
+fig, ax = plt.subplots(figsize=(16 * CM, 9.5 * CM))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
+
+yetenekler = [
+    ('Gönderi düzeyinde iddia–kanıt eşleştirme', [2, 1, 0, 0, 0]),
+    ('Çok modlu köken analizi',                  [2, 0, 0, 1, 0]),
+    ('Kriptografik köken doğrulaması',           [2, 0, 0, 0, 0]),
+    ('Zamansal koordinasyon tespiti',            [2, 0, 0, 0, 1]),
+    ('“Neden bunu görüyorum?” açıklaması',       [2, 0, 0, 0, 0]),
+    ('Kullanıcı denetimli akış politikası',      [2, 0, 0, 0, 0]),
+    ('Gerçek zamanlı çalışma',                   [2, 0, 2, 2, 2]),
+    ('Kalibrasyon ve çekimserlik',               [2, 0, 0, 0, 0]),
+]
+sutunlar = ['TrustShield', 'Topluluk\nnotları', 'Kaynak\nderecelendirme',
+            'YZ tespit\nservisleri', 'Bot tespit\naraçları']
+x0, sgen = 42, 11.6
+for j, sad in enumerate(sutunlar):
+    x = x0 + j * sgen
+    if j == 0:
+        ax.add_patch(Rectangle((x - sgen / 2 + 0.6, 10), sgen - 1.2, 82,
+                               facecolor='#EEF3F8', edgecolor='none', zorder=0))
+    ax.text(x, 95, sad, ha='center', va='center', fontsize=6.5,
+            color=LACI if j == 0 else GRI,
+            fontweight='bold' if j == 0 else 'normal', linespacing=1.4)
+
+for i, (ad, degerler) in enumerate(yetenekler):
+    y = 85 - i * 10
+    ax.text(39, y, ad, ha='right', va='center', fontsize=6.9, color=LACI)
+    if i % 2 == 1:
+        ax.add_patch(Rectangle((0, y - 4.4), 100, 8.8, facecolor='#FAFBFC',
+                               edgecolor='none', zorder=-1))
+    for j, d in enumerate(degerler):
+        x = x0 + j * sgen
+        if d == 2:
+            ax.plot(x, y, 'o', ms=9, color=YESIL if j else LACI, zorder=3)
+        elif d == 1:
+            ax.plot(x, y, 'o', ms=9, mfc='white', mec=AMBER, mew=1.5, zorder=3)
+            ax.plot(x, y, 'o', ms=4, color=AMBER, zorder=4)
+        else:
+            ax.plot([x - 1.8, x + 1.8], [y, y], color='#C4CBD3', linewidth=1.6, zorder=3)
+
+ax.text(0, -1, '●  var        ◐  kısmen / sınırlı        —  yok',
+        ha='left', va='center', fontsize=6.3, color=GRI)
+fig.tight_layout(pad=0.15)
+fig.savefig(os.path.join(CIK, 'g7-rakip-matrisi.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+
+# ==========================================================
+# G8 — ISLEM HACMINDE DUSUS
+# ==========================================================
+fig, ax = plt.subplots(figsize=(15.5 * CM, 6.4 * CM))
+asamalar = [('Naif yaklaşım\nher gösterimde analiz', 50_000_000, GRI),
+            ('Gönderi başına analiz\nsonuç paylaşılır', 1_000_000, MAVI),
+            ('Kademe 1 sonrası\nrisk sinyali filtresi', 150_000, AMBER),
+            ('Kademe 3 — derin analiz\nönbellek sonrası', 60_000, LACI)]
+etiketler = [a[0] for a in asamalar]
+degerler = [a[1] for a in asamalar]
+renkler = [a[2] for a in asamalar]
+konum = range(len(asamalar))
+ax.barh(list(konum), degerler, color=renkler, height=0.6, zorder=3)
+for i, d in enumerate(degerler):
+    ax.text(d * 1.35, i, '{:,}'.format(d).replace(',', '.'), va='center',
+            fontsize=7.4, color=LACI, fontweight='bold')
+ax.set_xscale('log')
+ax.set_yticks(list(konum))
+ax.set_yticklabels(etiketler, fontsize=6.9, color=LACI, linespacing=1.5)
+ax.invert_yaxis()
+ax.set_xlim(2e4, 4e8)
+ax.set_xlabel('günlük işlem sayısı (logaritmik ölçek)', fontsize=6.5, color=GRI)
+ax.tick_params(axis='x', labelsize=6.3, colors=GRI)
+ax.grid(axis='x', color='#E8EBEF', linewidth=0.8, zorder=0)
+for k in ('top', 'right', 'left'):
+    ax.spines[k].set_visible(False)
+ax.spines['bottom'].set_color('#D0D5DB')
+fig.tight_layout(pad=0.2)
+fig.savefig(os.path.join(CIK, 'g8-islem-hacmi.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+
+# ==========================================================
+# G9 — HEDEF KITLE KATMANLARI
+# ==========================================================
+fig, ax = plt.subplots(figsize=(15.5 * CM, 7.0 * CM))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
+katmanlar = [
+    ('BİRİNCİL', 'NSosyal son kullanıcıları', 'Platformun tüm kullanıcı tabanı', LACI, 96),
+    ('İKİNCİL', 'İçerik üreticileri', 'Taklit ve koordineli karalamaya karşı koruma', MAVI, 66),
+    ('ÜÇÜNCÜL', 'Kurumsal kullanıcılar', 'Medya, kamu iletişimi, marka itibar takibi', AMBER, 36),
+]
+for i, (etiket, ad, aciklama, renk, w) in enumerate(katmanlar):
+    y = 68 - i * 30
+    x = (100 - w) / 2
+    ax.add_patch(FancyBboxPatch((x, y), w, 22,
+                                boxstyle='round,pad=0.008,rounding_size=0.02',
+                                facecolor=renk, edgecolor='none', zorder=2))
+    ax.text(x + 3, y + 14.5, etiket, ha='left', va='center', fontsize=6.4,
+            color='white', fontweight='bold', alpha=0.75)
+    ax.text(x + 3, y + 7.5, ad, ha='left', va='center', fontsize=8.6,
+            color='white', fontweight='bold')
+    ax.text(x + w - 3, y + 11, aciklama, ha='right', va='center', fontsize=6.6,
+            color='white', alpha=0.9)
+ax.text(50, 2, 'Sistem platform içi bir alt sistem olduğu için ayrı kullanıcı kazanımı gerektirmez.',
+        ha='center', va='bottom', fontsize=6.5, color=GRI, style='italic')
+fig.tight_layout(pad=0.15)
+fig.savefig(os.path.join(CIK, 'g9-hedef-kitle.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+print('G7-G9 uretildi')
+
+# ==========================================================
+# G10 — VERI ON ISLEME HATTI
+# ==========================================================
+fig, ax = plt.subplots(figsize=(16 * CM, 4.6 * CM))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
+adimlar = [('Temizleme ve\nnormalizasyon', 'Türkçe biçimbilim'),
+           ('Dil tespiti ve\nyönlendirme', 'model seçimi'),
+           ('Segmentasyon ve\niddia ayrıştırma', 'olgu / kanaat'),
+           ('Yinelenen içerik\neleme', 'sızıntı önleme'),
+           ('Etiket dengeleme\nve bölme', 'zaman esaslı')]
+gen, bosl = 17.2, 3.5
+for i, (ad, alt) in enumerate(adimlar):
+    x = i * (gen + bosl)
+    ax.add_patch(FancyBboxPatch((x, 34), gen, 42,
+                                boxstyle='round,pad=0.01,rounding_size=0.03',
+                                facecolor='white', edgecolor=MAVI, linewidth=1.2, zorder=2))
+    ax.add_patch(Rectangle((x, 34), gen, 4, facecolor=MAVI, edgecolor='none', zorder=3))
+    ax.text(x + gen / 2, 60, ad, ha='center', va='center', fontsize=6.8,
+            color=LACI, fontweight='bold', zorder=4, linespacing=1.5)
+    ax.text(x + gen / 2, 45, alt, ha='center', va='center', fontsize=6.0,
+            color=GRI, zorder=4, style='italic')
+    ax.text(x + gen / 2, 84, str(i + 1), ha='center', va='center', fontsize=8,
+            color=MAVI, fontweight='bold')
+    if i < len(adimlar) - 1:
+        ok(ax, x + gen + 0.6, 55, x + gen + bosl - 0.6, 55, renk=MAVI, lw=1.2)
+ax.text(50, 18, 'Ham gönderi  →  model girdisi', ha='center', va='center',
+        fontsize=7, color=GRI, style='italic')
+fig.tight_layout(pad=0.15)
+fig.savefig(os.path.join(CIK, 'g10-veri-hatti.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+
+# ==========================================================
+# G11 — VERI KUMESI -> MOTOR ESLEMESI
+# ==========================================================
+fig, ax = plt.subplots(figsize=(15.5 * CM, 8.8 * CM))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
+kumeler = [('FEVER', [0]), ('LIAR', [0]), ('FakeNewsNet / CoAID', [0, 2]),
+           ('MuMiN', [1, 2]), ('TwiBot-22', [2]),
+           ('ClaimReview (Türkçe)', [0]), ('Türkçe küme (özgün)', [0, 1, 2, 3])]
+motor_ad = ['Claim Engine', 'Origin Engine', 'Graph Engine', 'Manipulation Engine']
+motor_renk = [MAVI, LACI, AMBER, KIRMIZI]
+ky = [92 - i * 13.5 for i in range(len(kumeler))]
+my = [82 - i * 21 for i in range(len(motor_ad))]
+for i, (ad, hedefler) in enumerate(kumeler):
+    ax.add_patch(FancyBboxPatch((1, ky[i] - 4.6), 33, 9.2,
+                                boxstyle='round,pad=0.008,rounding_size=0.02',
+                                facecolor='#F7F9FB', edgecolor='#D6DEE7',
+                                linewidth=1, zorder=2))
+    ax.text(17.5, ky[i], ad, ha='center', va='center', fontsize=6.6, color=LACI, zorder=3)
+    for h in hedefler:
+        ax.plot([34.5, 63.5], [ky[i], my[h]], color=motor_renk[h],
+                linewidth=0.9, alpha=0.55, zorder=1)
+for j, ad in enumerate(motor_ad):
+    ax.add_patch(FancyBboxPatch((64, my[j] - 6), 35, 12,
+                                boxstyle='round,pad=0.008,rounding_size=0.02',
+                                facecolor=motor_renk[j], edgecolor='none', zorder=2))
+    ax.text(81.5, my[j], ad, ha='center', va='center', fontsize=7.4,
+            color='white', fontweight='bold', zorder=3)
+ax.text(17.5, 2, 'VERİ KÜMELERİ', ha='center', fontsize=6.4, color=GRI, fontweight='bold')
+ax.text(81.5, 2, 'ANALİZ MOTORLARI', ha='center', fontsize=6.4, color=GRI, fontweight='bold')
+fig.tight_layout(pad=0.15)
+fig.savefig(os.path.join(CIK, 'g11-veri-motor.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+
+# ==========================================================
+# G12 — TOPLUMSAL FAYDA SENARYOLARI
+# ==========================================================
+fig, ax = plt.subplots(figsize=(16 * CM, 8.0 * CM))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
+senaryolar = [
+    ('AFET VE ACİL DURUM', KIRMIZI,
+     'Yanlış adres, sahte yardım\nçağrısı, eski görüntü',
+     'Köken ve ilk yayın tarihi\nişaretlenir, koordinasyon uyarısı'),
+    ('SAĞLIK BİLGİSİ', YESIL,
+     'Kaynağından güçlü ifade\nedilen tedavi iddiası',
+     'İddia ile kaynağın gerçekte\nsöylediği karşılaştırılır'),
+    ('FİNANSAL DOLANDIRICILIK', AMBER,
+     'Sahte yatırım çağrısı,\ntaklit edilmiş tanınmış kişi',
+     'Yapay aciliyet ve köken\nsinyalleri işlem öncesi uyarır'),
+    ('KİMLİK VE İTİBAR', MAVI,
+     'Rıza dışı üretilmiş\nsentetik görüntü ve ses',
+     'Köken doğrulaması içeriğin\nyanında görünür olur'),
+]
+gen, bosl = 22.8, 2.7
+for i, (baslik, renk, durum, cozum) in enumerate(senaryolar):
+    x = i * (gen + bosl)
+    ax.add_patch(FancyBboxPatch((x, 4), gen, 90,
+                                boxstyle='round,pad=0.008,rounding_size=0.025',
+                                facecolor='#FAFBFC', edgecolor='#DDE3EA',
+                                linewidth=1, zorder=1))
+    ax.add_patch(Rectangle((x, 84), gen, 10, facecolor=renk, edgecolor='none', zorder=2))
+    ax.text(x + gen / 2, 89, baslik, ha='center', va='center', fontsize=6.2,
+            color='white', fontweight='bold', zorder=3)
+    ax.text(x + gen / 2, 72, 'DURUM', ha='center', fontsize=5.6, color=GRI, fontweight='bold')
+    ax.text(x + gen / 2, 60, durum, ha='center', va='center', fontsize=6.3,
+            color=LACI, linespacing=1.6)
+    ax.plot([x + 3, x + gen - 3], [46, 46], color='#DDE3EA', linewidth=1)
+    ax.text(x + gen / 2, 38, 'TRUSTSHIELD', ha='center', fontsize=5.6,
+            color=renk, fontweight='bold')
+    ax.text(x + gen / 2, 22, cozum, ha='center', va='center', fontsize=6.3,
+            color=LACI, linespacing=1.6)
+fig.tight_layout(pad=0.15)
+fig.savefig(os.path.join(CIK, 'g12-senaryolar.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+
+# ==========================================================
+# G13 — GELIR MODELI
+# ==========================================================
+fig, ax = plt.subplots(figsize=(16 * CM, 6.6 * CM))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
+kanallar = [
+    ('PLATFORM LİSANSI', LACI, 'NSosyal ve diğer\nsosyal medya platformları',
+     'Bütünleşik güven katmanı', 'Aktif kullanıcı başına\nyıllık lisans'),
+    ('KURUMSAL API', MAVI, 'Medya, kamu iletişimi,\nmarka itibar ekipleri',
+     'İddia doğrulama ve\nkoordinasyon tespiti servisi',
+     'Çağrı hacmine dayalı\nkademeli abonelik'),
+    ('İLERİ KULLANICI', AMBER, 'Son kullanıcı',
+     'Geçmiş analiz, raporlama,\ngelişmiş politika araçları',
+     'Temel katman ücretsiz,\nileri katman abonelikle'),
+]
+gen, bosl = 31, 3.5
+for i, (baslik, renk, musteri, urun, fiyat) in enumerate(kanallar):
+    x = i * (gen + bosl)
+    ax.add_patch(FancyBboxPatch((x, 4), gen, 90,
+                                boxstyle='round,pad=0.008,rounding_size=0.025',
+                                facecolor='white', edgecolor=renk, linewidth=1.3, zorder=1))
+    ax.add_patch(Rectangle((x, 82), gen, 12, facecolor=renk, edgecolor='none', zorder=2))
+    ax.text(x + gen / 2, 88, baslik, ha='center', va='center', fontsize=7,
+            color='white', fontweight='bold', zorder=3)
+    for k, (etiket, deger) in enumerate([('MÜŞTERİ', musteri), ('ÜRÜN', urun),
+                                         ('FİYATLAMA', fiyat)]):
+        yy = 70 - k * 24
+        ax.text(x + 2.5, yy, etiket, ha='left', fontsize=5.5, color=GRI, fontweight='bold')
+        ax.text(x + 2.5, yy - 9, deger, ha='left', va='center', fontsize=6.4,
+                color=LACI, linespacing=1.6)
+fig.tight_layout(pad=0.15)
+fig.savefig(os.path.join(CIK, 'g13-gelir-modeli.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+
+# ==========================================================
+# G14 — BIRIM MALIYET EGRISI
+# ==========================================================
+fig, ax = plt.subplots(figsize=(14.5 * CM, 6.0 * CM))
+isabet = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
+birim = [100, 88, 77, 66, 56, 47, 38, 30, 22, 15]
+ax.plot(isabet, birim, color=LACI, linewidth=2.2, zorder=3)
+ax.fill_between(isabet, birim, color=MAVI, alpha=0.11, zorder=2)
+ax.scatter([60], [38], s=55, color=KIRMIZI, zorder=4)
+ax.annotate('varsayılan çalışma noktası\n(%60 önbellek isabeti)', xy=(60, 38),
+            xytext=(58, 74), fontsize=6.4, color=KIRMIZI, ha='center',
+            arrowprops=dict(arrowstyle='->', color=KIRMIZI, lw=1))
+ax.set_xlabel('doğrulama önbelleği isabet oranı (%)', fontsize=6.8, color=GRI)
+ax.set_ylabel('gönderi başına\ngöreli birim maliyet', fontsize=6.8, color=GRI, linespacing=1.5)
+ax.tick_params(labelsize=6.3, colors=GRI)
+ax.set_xlim(0, 90); ax.set_ylim(0, 105)
+ax.grid(color='#EBEEF2', linewidth=0.8, zorder=0)
+for k in ('top', 'right'):
+    ax.spines[k].set_visible(False)
+for k in ('left', 'bottom'):
+    ax.spines[k].set_color('#D0D5DB')
+fig.tight_layout(pad=0.2)
+fig.savefig(os.path.join(CIK, 'g14-birim-maliyet.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+print('G10-G14 uretildi')

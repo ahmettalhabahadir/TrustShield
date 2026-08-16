@@ -31,12 +31,14 @@ Sistem, hesaplama maliyetini ve gecikmeyi denetim altında tutmak için kademeli
 kurgulanmıştır. Her gönderi tüm modellerden geçmez; yalnızca risk sinyali taşıyan içerik
 bir üst kademeye yükselir.
 
-![Şekil 1. TrustShield kademeli sistem mimarisi ve sunucu–cihaz ayrımı](gorseller/g1-sistem-mimarisi.png)
+![Şekil 3. TrustShield kademeli sistem mimarisi ve sunucu–cihaz ayrımı](gorseller/g1-sistem-mimarisi.png)
 
 Mimarinin temel ayrımı şudur: **içerik düzeyindeki analiz sunucuda, gönderi başına bir kez**
 yapılır ve o gönderiyi gören tüm kullanıcılara ortak olarak sunulur; **kullanıcı düzeyindeki
 kişiselleştirme ise cihazda** yürütülür. Bu ayrım hem maliyeti kullanıcı sayısından
 bağımsızlaştırır hem de kişisel tercih verisinin sunucuya taşınmasını gereksiz kılar.
+
+![Şekil 4. Kademeli filtrelemenin derin analize ulaşan içerik oranına etkisi](gorseller/g2-kademeli-filtreleme.png)
 
 ### Analiz motorları
 
@@ -92,6 +94,8 @@ dil örüntüsü boyutlarında etiketlenmekte, her örnek en az iki bağımsız 
 tarafından değerlendirilmekte ve etiketleyiciler arası uyum ölçülmektedir. Bu küme,
 projenin literatüre bırakacağı yeniden kullanılabilir çıktılardan biridir.
 
+![Şekil 5. Veri kümelerinin analiz motorlarıyla eşlenmesi](gorseller/g11-veri-motor.png)
+
 ### Sürüm kontrolü
 
 Projenin tüm kaynak kodu, geliştirme sürecinin başından itibaren dağıtık sürüm kontrol
@@ -110,6 +114,8 @@ jüri incelemesine açıktır.
 ## 3.2. Model ve Veri Doğrulama
 
 ### Veri ön işleme
+
+![Şekil 6. Beş adımlı veri ön işleme hattı](gorseller/g10-veri-hatti.png)
 
 Ön işleme hattı, ham gönderiyi model girdisine dönüştüren beş adımdan oluşur.
 
@@ -217,7 +223,7 @@ düşmanca örneklerle sınanmaktadır.
 
 ### Kullanıcı akışları
 
-![Şekil 6. Üç temel kullanıcı akışı](gorseller/g6-kullanici-akislari.png)
+![Şekil 7. Üç temel kullanıcı akışı](gorseller/g6-kullanici-akislari.png)
 
 **Akış 1 — Bağlam edinme.** Kullanıcı akışında bir gönderiyle karşılaşır → gönderinin
 altında ayrıştırılmış güven kartı görünür → kullanıcı "Kanıt" düğmesine dokunur → gönderideki
@@ -237,7 +243,7 @@ veya politikayı gevşetebilir.
 
 ### Arayüz tasarım kararları
 
-![Şekil 3. Güven kartı arayüz taslağı: ayrıştırılmış boyutlar, gerekçe metni ve eylem düğmeleri](gorseller/g3-guven-karti.png)
+![Şekil 8. Güven kartı arayüz taslağı: ayrıştırılmış boyutlar, gerekçe metni ve eylem düğmeleri](gorseller/g3-guven-karti.png)
 
 | Karar | Gerekçe |
 |---|---|
