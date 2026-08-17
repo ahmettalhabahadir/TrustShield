@@ -132,7 +132,8 @@ sunumları (14 Eylül 2026) tarihleriyle uyumlu olarak planlanmıştır.
 | KT-4 | Mentörlük süreci | 2-7 Eylül 2026 |
 | KT-5 | Çalışan prototipin tamamlanması | Eylül 2026, 2. hafta |
 | KT-6 | **Final sunumlarının teslimi** | **14 Eylül 2026, 17.00** |
-| KT-7 | TEKNOFEST Şanlıurfa | 30 Eylül – 4 Ekim 2026 |
+| KT-7 | Jüri ve katılımcılara canlı sunum | 20 Eylül 2026 |
+| KT-8 | TEKNOFEST Şanlıurfa | 30 Eylül – 4 Ekim 2026 |
 
 ---
 
