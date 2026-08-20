@@ -17,20 +17,19 @@ en çok fayda sağlayacağı kesimi dışarıda bırakırdı.
 
 ![Şekil 12. Üç gelir kanalı, farklı müşteri segmentlerinden aynı teknik altyapıyla gelir üretir.](gorseller/g13-gelir-modeli.png)
 
-Platform lisansı hedeflenen birincil kanaldır; ürün NSosyal gibi bir platforma entegrasyonu
-gözeterek tasarlandığından, bir entegrasyon anlaşması gerçekleştiğinde ilk müşteri ile ilk
-kullanıcı kitlesi aynı adımda kazanılır. Kurumsal API, aynı altyapıyı ek geliştirme maliyeti
-olmadan koordineli yayılım tespiti, itibar yönetimi ve kriz iletişimi pazarına açar; bu
-kanal platform iş birliğinden bağımsız olarak da başlatılabilir.
+Platform lisansı hedeflenen birincil kanaldır; bir entegrasyon anlaşması gerçekleştiğinde
+ilk müşteri ile ilk kullanıcı kitlesi aynı adımda kazanılır. Kurumsal API, koordineli
+yayılım tespiti ve itibar yönetimi pazarına açılan, platform iş birliğinden bağımsız
+başlatılabilecek ikinci kanaldır — ancak kurumsal bir API ürününün kimlik doğrulama,
+izleme, hizmet seviyesi taahhüdü (SLA), güvenlik ve istek sınırlama (rate limiting)
+altyapısı ayrı bir geliştirme kalemidir; "ek maliyetsiz" değildir.
 
 ### Sektöre ve ülke ekonomisine katma değer
 
-Projenin ekonomik katma değeri üç başlıkta toplanmaktadır:
-
 | Katma değer | Açıklama |
 |---|---|
-| Teknolojik bağımsızlık | İçerik doğrulama ve itibar izleme çözümlerinin çoğu yurt dışı kaynaklı, Türkçe başarımı sınırlı; yerli altyapı bağımlılığı azaltır |
-| Birikim ve insan kaynağı | Türkçe DL işleme, çok modlu analiz ve zamansal çizge öğrenmesinde uygulamalı birikim; Türkçe değerlendirme kümesi projeden bağımsız da kullanılabilir |
+| Teknolojik bağımsızlık | İçerik doğrulama çözümlerinin çoğu yurt dışı kaynaklı, Türkçe başarımı sınırlı; yerli altyapı bağımlılığı azaltır |
+| Birikim ve insan kaynağı | Türkçe NLP ve zamansal çizge öğrenmesinde uygulamalı birikim; Türkçe değerlendirme kümesi projeden bağımsız da kullanılabilir |
 | İhracat potansiyeli | Çekirdek mimari dile/platforma bağımlı değil; farklı dil ve platformlara uyarlanabilir |
 
 ### İş birliği potansiyeli
@@ -40,7 +39,6 @@ Projenin ekonomik katma değeri üç başlıkta toplanmaktadır:
 | Bağımsız doğrulama kuruluşları | Doğrulanmış iddia veri paylaşımı |
 | Üniversiteler ve araştırma merkezleri | Model geliştirme, veri kümesi genişletme |
 | Kamu kurumları | Afet/kriz dönemlerinde resmî bilgi kaynaklarına öncelikli erişim |
-| Uluslararası köken standardı girişimleri | Uyumluluk çalışmaları |
 
 ## 6.2. Finansal, Teknik ve Sosyal Sürdürülebilirlik
 
@@ -48,38 +46,31 @@ Projenin ekonomik katma değeri üç başlıkta toplanmaktadır:
 
 ![Şekil 13. Önbellek isabet oranı yükseldikçe birim maliyet düşer — ölçek büyüdükçe kârlılık iyileşir.](gorseller/g14-birim-maliyet.png)
 
-Sistemin işletme maliyeti, kademeli mimari sayesinde kullanıcı sayısıyla doğrusal olarak
+Sistemin işletme maliyeti kademeli mimari sayesinde kullanıcı sayısıyla doğrusal olarak
 artmaz: maliyet gösterim sayısına değil **benzersiz iddia sayısına** bağlıdır. Kullanıcı
-tabanı büyüdükçe önbellek isabet oranı yükselir ve birim maliyet düşer — ölçek büyüdükçe
-kârlılığın iyileştiği bir yapı.
+tabanı büyüdükçe önbellek isabet oranı yükselir ve birim maliyet düşer.
 
 ### Teknik sürdürülebilirlik
 
-Sistem, her analiz motorunun bağımsız olarak güncellenebileceği modüler bir yapıda
-tasarlanmıştır; bir modelin yenisiyle değiştirilmesi diğer bileşenleri etkilemez. Bakım
-planı üç unsurdan oluşur:
+Sistem, her analiz motorunun bağımsız güncellenebileceği modüler bir yapıda tasarlanmıştır.
+Bakım planı üç unsurdan oluşur:
 
 | Unsur | Uygulama |
 |---|---|
-| Düzenli yeniden eğitim | Yeni üretim modelleri yaygınlaştıkça başarım düşer; değerlendirme kümesi genişletilir, modeller belirli aralıklarla yeniden eğitilir |
-| Başarım izleme | Canlı ortamda kalibrasyon sapması ve yanlış pozitif oranı sürekli ölçülür, eşik aşıldığında müdahale edilir |
-| Düşmanca uyuma karşı tazeleme | Tespitten kaçınmak isteyen aktörlerin davranış değişikliği; saldırı örüntüleri düzenli olarak değerlendirme kümesine eklenir |
+| Düzenli yeniden eğitim | Değerlendirme kümesi genişletilir, modeller belirli aralıklarla yeniden eğitilir |
+| Başarım izleme | Canlı ortamda kalibrasyon sapması ve yanlış pozitif oranı sürekli ölçülür |
+| Düşmanca uyuma karşı tazeleme | Saldırı örüntüleri düzenli olarak değerlendirme kümesine eklenir |
 
 ### Sosyal sürdürülebilirlik ve değişen ihtiyaçlara uyum
-
-Sistemin uzun vadede kabul görmesi, kullanıcının onu bir denetim aracı değil bir yardımcı
-olarak görmesine bağlıdır:
 
 | Kalıcı tasarım kararı | Etkisi |
 |---|---|
 | İçerik silinmez, yalnızca bağlam eklenir | Kullanıcı güveni korunur |
-| Her politika kullanıcı tarafından değiştirilebilir ve geri alınabilir | Denetim kullanıcıda kalır |
-| Aşağı sıralanan içerik gerekçesiyle görünür kalır | Şeffaflık sağlanır |
-| **İtiraz mekanizması** — yanlış işaretlenen içerik üreticisi hangi sinyallere dayanıldığını görüp yeniden inceleme talep edebilir | Otomatik kararın düzeltme yolu açık kalır; sonuçlar model iyileştirmesine geri beslenir |
+| Her politika kullanıcı tarafından değiştirilebilir (User Control) | Denetim kullanıcıda kalır |
+| **İtiraz mekanizması** — yanlış işaretlenen içerik üreticisi yeniden inceleme talep edebilir | Otomatik kararın düzeltme yolu açık kalır |
 
 Değişen kullanıcı ihtiyaçlarına uyum, politikaların doğal dille tanımlanabilir olmasıyla
-sağlanır: yeni bir ihtiyaç için arayüze ayar eklemek gerekmez, kullanıcı ihtiyacını ifade
-eder ve sistem karşılığını üretir.
+sağlanır: yeni bir ihtiyaç için arayüze ayar eklemek gerekmez.
 
 ---
 
@@ -87,30 +78,33 @@ eder ve sistem karşılığını üretir.
 
 ## 7.1. İş Paketleri ve Zamanlama
 
-Proje sekiz iş paketi hâlinde yürütülmektedir. Takvim, yarışma takviminde belirtilen
-teknik rapor teslimi (24 Ağustos 2026), mentörlük süreci (2-7 Eylül 2026) ve final
-sunumları (14 Eylül 2026) tarihleriyle uyumlu olarak planlanmıştır.
+Proje, iki kişilik ekibe uygun önceliklendirilmiş dokuz iş paketi hâlinde yürütülmektedir:
+önce çekirdek altyapı, sonra sırayla Evidence, Origin, Risk motorları, ardından Why ve
+User Control, en son arayüz/test/optimizasyon. Takvim; teknik rapor teslimi (24 Ağustos
+2026), mentörlük süreci (2-7 Eylül 2026) ve final sunumları (14 Eylül 2026) tarihleriyle
+uyumludur.
 
 | İP | İş Paketi | Alt Faaliyetler | Süre |
 |---|---|---|---|
-| İP-1 | Problem analizi ve literatür taraması | Kaynak taraması, mevcut çözümlerin karşılaştırılması, gereksinim çıkarımı | Temmuz 2026 |
-| İP-2 | Sistem mimarisi ve teknoloji seçimi | Kademeli mimarinin tasarımı, motor sınırlarının tanımlanması, teknoloji yığını kararı | Temmuz – Ağustos 2026 |
-| İP-3 | Veri hazırlama | Açık veri kümelerinin edinimi, ön işleme hattı, Türkçe değerlendirme kümesinin etiketlenmesi | Ağustos 2026 |
-| İP-4 | Dil katmanı geliştirme | İddia çıkarımı, kanıt eşleştirme, manipülatif dil sınıflandırması | Ağustos – Eylül 2026 |
-| İP-5 | Köken ve çizge katmanı geliştirme | Yapay zekâ üretimi tespiti, köken doğrulama, zamansal çizge modeli | Ağustos – Eylül 2026 |
-| İP-6 | Arayüz ve prototip | Kullanıcı akışları, güven kartı tasarımı, çalışan prototipin geliştirilmesi | Ağustos – Eylül 2026 |
-| İP-7 | Doğrulama ve test | Başarım ölçümü, kalibrasyon, kullanılabilirlik testi, düşmanca sınama | Eylül 2026 |
-| İP-8 | Raporlama ve sunum | Teknik rapor, sunum dosyası, demo videosu, final sunumu | Ağustos – Eylül 2026 |
+| İP-1 | Problem analizi ve literatür taraması | Kaynak taraması, mevcut çözümlerin karşılaştırılması | Temmuz 2026 |
+| İP-2 | Çekirdek altyapı (core backend) | FastAPI servisi, PostgreSQL+pgvector, kademeli mimari iskeleti | Temmuz – Ağustos 2026 |
+| İP-3 | Evidence Engine | Veri hazırlama, iddia çıkarımı ve kanıt getirme prototipi | Ağustos 2026 |
+| İP-4 | Origin Engine | C2PA kontrolü, YZ üretimi olasılık sinyali prototipi | Ağustos 2026 |
+| İP-5 | Risk Engine (prototip) | Manipülatif dil sınıflandırması, kontrollü/sentetik koordinasyon senaryosu | Ağustos – Eylül 2026 |
+| İP-6 | Why Engine ve User Control | Gösterim gerekçesi üretimi, doğal dille akış politikası | Eylül 2026 |
+| İP-7 | Arayüz (UI) | Güven kartı, filtrelenenler çekmecesi, kullanıcı akışları | Ağustos – Eylül 2026 |
+| İP-8 | Doğrulama ve test | Başarım ölçümü, kalibrasyon, kullanılabilirlik testi | Eylül 2026 |
+| İP-9 | Optimizasyon, raporlama ve sunum | Gecikme/maliyet ince ayarı, final raporu, demo videosu | Eylül 2026 |
 
 ### Zaman çizelgesi
 
-![Şekil 14. Sekiz iş paketi, yarışma takvimindeki üç kilometre taşıyla (24 Ağustos, 2-7 Eylül, 14 Eylül) uyumlu ilerler.](gorseller/g4-is-paketleri.png)
+![Şekil 14. Dokuz iş paketi, yarışma takvimindeki üç kilometre taşıyla (24 Ağustos, 2-7 Eylül, 14 Eylül) uyumlu ilerler.](gorseller/g4-is-paketleri.png)
 
 ### Kilometre taşları
 
 | Kod | Kilometre Taşı | Tarih |
 |---|---|---|
-| KT-1 | Sistem mimarisinin tamamlanması | Ağustos 2026, 2. hafta |
+| KT-1 | Çekirdek altyapının tamamlanması | Ağustos 2026, 2. hafta |
 | KT-2 | **Teknik rapor teslimi** | **24 Ağustos 2026, 17.00** |
 | KT-3 | Teknik rapor sonuçlarının açıklanması | 2 Eylül 2026 |
 | KT-4 | Mentörlük süreci | 2-7 Eylül 2026 |
@@ -125,28 +119,20 @@ sunumları (14 Eylül 2026) tarihleriyle uyumlu olarak planlanmıştır.
 
 ## 8.1. Takım Organizasyonu ve Roller
 
-Takım, şartnamenin izin verdiği asgari büyüklükte, 2 kişiden oluşmaktadır. İki kişilik bir
-ekiple dört analiz motorunu ve kullanıcı arayüzünü kapsamak için roller geniş tanımlanmış,
-sorumluluklar iş paketleri arasında dengeli dağıtılmıştır.
+Takım, şartnamenin izin verdiği asgari büyüklükte, 2 kişiden oluşmaktadır.
 
 | Üye | Disiplin | Rol | Sorumlu Olduğu İş Paketleri |
 |---|---|---|---|
-| Üye 1 (Takım Kaptanı) | **[DOLDURUN]** | Ürün yönetimi, sistem mimarisi, Claim/Manipulation Engine, raporlama | İP-1, İP-2, İP-4, İP-8 |
-| Üye 2 | **[DOLDURUN]** | Yazılım geliştirme, Origin/Graph Engine, arayüz ve testler | İP-3, İP-5, İP-6, İP-7 |
+| Üye 1 (Takım Kaptanı) | **[DOLDURUN]** | Ürün yönetimi, çekirdek altyapı, Evidence/Risk Engine, raporlama | İP-1, İP-2, İP-3, İP-5, İP-9 |
+| Üye 2 | **[DOLDURUN]** | Origin Engine, Why/User Control, arayüz, testler | İP-4, İP-6, İP-7, İP-8 |
 | Danışman *(varsa)* | **[DOLDURUN]** | Teknik ve akademik yönlendirme | — |
 
 > **[DOLDURUN: Disiplin sütununu doldurun — şablon kuralı gereği isim/fotoğraf yazılmaz,
-> yalnızca disiplin (ör. "Bilgisayar Mühendisliği", "Yapay Zekâ") yazılır. Danışmanınız
-> yoksa o satırı kaldırın — danışman takım üye sayısına dâhil değildir.]**
+> yalnızca disiplin yazılır. Danışmanınız yoksa o satırı kaldırın.]**
 
 ### Disiplinlerin projeye katkısı
 
 İki kişilik ekip, aralarında hem yapay zekâ/veri hem yazılım/arayüz yetkinliklerini
-kapsayacak şekilde bölünmüştür: biri analiz motorlarının model tarafına ve ürün
-yönetimine, diğeri sistem altyapısına, arayüze ve testlere odaklanır. Bu ayrım, doğru bir
-analiz sonucunun kullanıcı için anlaşılır hâle getirilmesini de kapsar — aksi hâlde ürünün
-toplumsal faydası ortadan kalkar.
-
-İş paketleri iki üye arasında, her paketin birincil sorumlusu belirlenecek biçimde
-dağıtılmıştır. Bağımlılık taşıyan paketler ve prototip geliştirme, haftalık eşgüdüm
-toplantılarıyla senkronize edilmektedir.
+kapsayacak şekilde bölünmüştür. İş paketleri her paketin birincil sorumlusu belirlenecek
+biçimde dağıtılmış, bağımlılık taşıyan paketler haftalık eşgüdüm toplantılarıyla
+senkronize edilmektedir.

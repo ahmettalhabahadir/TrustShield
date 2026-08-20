@@ -59,7 +59,7 @@ serit(80.5, 91.5, 'CİHAZ', 'ön filtre', AMBER, '#FCFAF5')
 serit(21.5, 78.5, 'SUNUCU', 'gönderi başına bir kez', MAVI, '#FAFBFD')
 serit(1.5, 19.5, 'CİHAZ', 'veri çıkmaz', AMBER, '#FCFAF5')
 
-kutu(ax, 28, 93.5, 44, 6, 'NSosyal İçerik Akışı', fc=LACI, tc='white', kalin=True, fs=8.5)
+kutu(ax, 28, 93.5, 44, 6, 'CONTENT  ·  Gönderi Akışı', fc=LACI, tc='white', kalin=True, fs=8.5)
 ok(ax, ORTA, 93.5, ORTA, 89.2)
 
 kutu(ax, SOL, 82.5, SAG - SOL, 6.5,
@@ -74,37 +74,36 @@ ok(ax, ORTA, 69.5, ORTA, 63.7)
 ax.text(ORTA + 2, 66.6, 'yalnızca şüpheli veya viral içerik', fontsize=6.3,
         color=GRI, style='italic', va='center')
 
-kutu(ax, SOL, 57, SAG - SOL, 6.5, 'KADEME 3  ·  Derin Analiz',
+kutu(ax, SOL, 57, SAG - SOL, 6.5, 'KADEME 3  ·  Personal Social Trust Layer',
      fc=LACI, tc='white', kalin=True, fs=8.5)
 
-motorlar = [('Claim Engine', 'iddia – kanıt\nuyumu'),
-            ('Origin Engine', 'YZ üretimi\nve köken'),
-            ('Graph Engine', 'zamansal\nkoordinasyon'),
-            ('Manipulation\nEngine', 'retorik\nörüntüler')]
-gen, bosl = 21, 2.6
-x0 = SOL + ((SAG - SOL) - (4 * gen + 3 * bosl)) / 2
+motorlar = [('Evidence\nEngine', 'iddia –\nkanıt uyumu'),
+            ('Origin\nEngine', 'YZ üretimi\nve köken'),
+            ('Risk\nEngine', 'manipülasyon +\nkoordinasyon')]
+gen, bosl = 25, 4.5
+x0 = SOL + ((SAG - SOL) - (3 * gen + 2 * bosl)) / 2
 for i, (ad, alt) in enumerate(motorlar):
     x = x0 + i * (gen + bosl)
     ok(ax, ORTA, 57, x + gen / 2, 51.2)
     ax.add_patch(FancyBboxPatch((x, 37.5), gen, 13,
                                 boxstyle='round,pad=0.012,rounding_size=0.02',
                                 facecolor='white', edgecolor=MAVI, linewidth=1.2, zorder=2))
-    ax.text(x + gen / 2, 46.8, ad, ha='center', va='center', fontsize=7.2,
+    ax.text(x + gen / 2, 46.8, ad, ha='center', va='center', fontsize=7.6,
             color=MAVI, fontweight='bold', zorder=3, linespacing=1.3)
-    ax.text(x + gen / 2, 41.3, alt, ha='center', va='center', fontsize=6.2,
+    ax.text(x + gen / 2, 41.3, alt, ha='center', va='center', fontsize=6.3,
             color=GRI, zorder=3, linespacing=1.45)
     ok(ax, x + gen / 2, 37.5, ORTA, 32.2)
 
-kutu(ax, 20, 25, 60, 7, 'Güven Kartı  +  Gerekçe Metni',
+kutu(ax, 20, 25, 60, 7, 'WHY AM I SEEING THIS?  ·  Gerekçe Motoru',
      fc=ACIK, ec=LACI, kalin=True, fs=8.2)
 ok(ax, ORTA, 25, ORTA, 18.2)
 
 kutu(ax, SOL, 11.5, SAG - SOL, 6.5,
-     'Kullanıcı Tercih Modeli  ·  Sıralama ve Politika Uygulaması',
+     'USER CONTROL  ·  Doğal Dille Akış Politikası (cihazda çalışır)',
      fc='white', ec=AMBER, fs=7.5)
 ok(ax, ORTA, 11.5, ORTA, 8.7)
 
-kutu(ax, 28, 2.5, 44, 6, 'Kullanıcı Arayüzü', fc=LACI, tc='white', kalin=True, fs=8.5)
+kutu(ax, 28, 2.5, 44, 6, 'Personal Feed', fc=LACI, tc='white', kalin=True, fs=8.5)
 
 fig.tight_layout(pad=0.15)
 fig.savefig(os.path.join(CIK, 'g1-sistem-mimarisi.png'), dpi=300,
@@ -153,34 +152,37 @@ ax.add_patch(FancyBboxPatch((2, 2), 96, 96, boxstyle='round,pad=0.4,rounding_siz
                             facecolor='white', edgecolor=LACI, linewidth=1.4))
 ax.add_patch(Rectangle((2, 84), 96, 14, facecolor=LACI, edgecolor='none'))
 ax.text(6, 91, 'TRUSTSHIELD', fontsize=9.5, color='white', fontweight='bold', va='center')
-ax.text(94, 91, 'Neden bunu görüyorum?', fontsize=7, color='#C8D6E5',
+ax.text(94, 91, 'ayrıntı için dokun', fontsize=6.6, color='#C8D6E5',
         va='center', ha='right', style='italic')
 
-boyutlar = [('Kaynak kalitesi', 'Yüksek', YESIL, 0.82),
-            ('Kanıt uyumu', 'Orta', AMBER, 0.58),
-            ('YZ üretimi olasılığı', 'Yüksek', AMBER, 0.86),
-            ('Manipülasyon riski', 'Düşük', YESIL, 0.22),
-            ('Ağ bütünlüğü', 'Düşük', KIRMIZI, 0.31)]
-for i, (ad, bant, renk, deger) in enumerate(boyutlar):
-    y = 74 - i * 11.5
-    ax.text(6, y, ad, fontsize=7.8, color=LACI, va='center')
-    ax.add_patch(Rectangle((40, y - 2.4), 38, 4.8, facecolor=ACIKGRI, edgecolor='none'))
-    ax.add_patch(Rectangle((40, y - 2.4), 38 * deger, 4.8, facecolor=renk, edgecolor='none'))
-    ax.text(80, y, bant, fontsize=7.4, color=renk, va='center', fontweight='bold')
+basliklar = [('EVIDENCE', 'Kanıt bulundu', YESIL, 0.78),
+             ('ORIGIN', 'YZ üretimi olasılığı yüksek', AMBER, 0.82),
+             ('RISK', 'Düşük risk sinyali', YESIL, 0.24),
+             ('WHY', 'İlgi alanın + takip ettiğin hesap', MAVI, 0.55)]
+for i, (ad, aciklama, renk, deger) in enumerate(basliklar):
+    y = 73 - i * 15
+    ax.add_patch(FancyBboxPatch((5, y - 4.8), 8, 9.6,
+                                boxstyle='round,pad=0.01,rounding_size=0.03',
+                                facecolor=renk, edgecolor='none', zorder=2))
+    ax.text(9, y, ad[0], fontsize=10, color='white', fontweight='bold',
+            ha='center', va='center', zorder=3)
+    ax.text(17, y + 3.2, ad, fontsize=8, color=LACI, fontweight='bold', va='center')
+    ax.text(17, y - 2.6, aciklama, fontsize=6.6, color=GRI, va='center')
+    ax.add_patch(Rectangle((62, y - 1.6), 28, 3.6, facecolor=ACIKGRI, edgecolor='none'))
+    ax.add_patch(Rectangle((62, y - 1.6), 28 * deger, 3.6, facecolor=renk, edgecolor='none'))
 
-ax.plot([6, 94], [21.5, 21.5], color='#DDE3EA', linewidth=1)
-ax.text(6, 18.5, 'Bu gönderi bilimsel bir çalışmaya dayanıyor; ancak sonucu kaynakta\n'
-                 'olduğundan daha güçlü ifade ediyor.',
-        fontsize=6.9, color=GRI, va='top', linespacing=1.7)
+ax.plot([6, 94], [15, 15], color='#DDE3EA', linewidth=1)
+ax.text(6, 12.5, 'Ana kart dört başlıkla sınırlı; kaynak listesi ve gerekçe ayrıntısı alt ekranda.',
+        fontsize=6.3, color=GRI, va='center', style='italic')
 
-for i, (etiket, dolu) in enumerate([('Kanıt', True), ('Karşı görüşler', False),
+for i, (etiket, dolu) in enumerate([('Evidence', True), ('Alternatif kanıtlar', False),
                                     ('Akışı ayarla', False)]):
     x = 6 + i * 30
     ax.add_patch(FancyBboxPatch((x, 2.5), 27, 5.4,
                                 boxstyle='round,pad=0.15,rounding_size=1.0',
                                 facecolor=LACI if dolu else 'white',
                                 edgecolor=LACI, linewidth=1))
-    ax.text(x + 13.5, 5.2, etiket, ha='center', va='center', fontsize=7,
+    ax.text(x + 13.5, 5.2, etiket, ha='center', va='center', fontsize=6.6,
             color='white' if dolu else LACI, fontweight='bold')
 
 fig.tight_layout(pad=0.15)
@@ -194,14 +196,15 @@ plt.close(fig)
 fig, ax = plt.subplots(figsize=(16 * CM, 7.4 * CM))
 
 paketler = [
-    ('İP-1  Problem analizi ve literatür', '2026-07-06', '2026-08-05', MAVI),
-    ('İP-2  Sistem mimarisi ve teknoloji', '2026-07-20', '2026-08-18', MAVI),
-    ('İP-3  Veri hazırlama ve etiketleme', '2026-08-03', '2026-08-31', LACI),
-    ('İP-4  Dil katmanı geliştirme', '2026-08-17', '2026-09-12', LACI),
-    ('İP-5  Köken ve çizge katmanı', '2026-08-17', '2026-09-12', LACI),
-    ('İP-6  Arayüz ve prototip', '2026-08-10', '2026-09-12', MAVI),
-    ('İP-7  Doğrulama ve test', '2026-08-31', '2026-09-13', AMBER),
-    ('İP-8  Raporlama ve sunum', '2026-08-14', '2026-09-14', GRI),
+    ('İP-1  Problem analizi ve literatür', '2026-07-06', '2026-08-05', GRI),
+    ('İP-2  Çekirdek altyapı', '2026-07-20', '2026-08-18', MAVI),
+    ('İP-3  Evidence Engine', '2026-08-03', '2026-08-24', LACI),
+    ('İP-4  Origin Engine', '2026-08-10', '2026-08-31', LACI),
+    ('İP-5  Risk Engine (prototip)', '2026-08-17', '2026-09-07', LACI),
+    ('İP-6  Why + User Control', '2026-08-24', '2026-09-10', LACI),
+    ('İP-7  Arayüz (UI)', '2026-08-10', '2026-09-12', MAVI),
+    ('İP-8  Doğrulama ve test', '2026-08-31', '2026-09-13', AMBER),
+    ('İP-9  Optimizasyon, rapor, sunum', '2026-09-07', '2026-09-14', GRI),
 ]
 for i, (ad, b, s, renk) in enumerate(paketler):
     b = dt.datetime.strptime(b, '%Y-%m-%d')
@@ -280,7 +283,7 @@ ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
 
 akislar = [
     ('AKIŞ 1  ·  Bağlam edinme', MAVI,
-     ['Gönderi\ngörülür', 'Güven kartı\naçılır', 'İddialar ve\nkanıt', 'Karşı\ngörüşler']),
+     ['Gönderi\ngörülür', 'Güven kartı\naçılır', 'İddialar ve\nkanıt', 'Alternatif\nkanıtlar']),
     ('AKIŞ 2  ·  Akış politikası tanımlama', LACI,
      ['Kullanıcı\ndoğal dille\nyazar', 'Sistem somut\npolitika önerir',
       'Kullanıcı\nonaylar', 'Politika\nyürürlükte']),
@@ -402,9 +405,9 @@ plt.close(fig)
 fig, ax = plt.subplots(figsize=(15.5 * CM, 7.0 * CM))
 ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
 katmanlar = [
-    ('BİRİNCİL', 'NSosyal son kullanıcıları', 'Platformun tüm kullanıcı tabanı', LACI, 96),
-    ('İKİNCİL', 'İçerik üreticileri', 'Taklit ve koordineli karalamaya karşı koruma', MAVI, 66),
-    ('ÜÇÜNCÜL', 'Kurumsal kullanıcılar', 'Medya, kamu iletişimi, marka itibar takibi', AMBER, 36),
+    ('BİRİNCİL — MVP HEDEFİ', '18-30 yaş aktif kullanıcı', 'Haber/gündem/teknoloji içeriği tüketen kesim', LACI, 96),
+    ('İKİNCİL — sonraki aşama', 'İçerik üreticileri', 'Taklit ve koordineli karalamaya karşı koruma', MAVI, 66),
+    ('ÜÇÜNCÜL — sonraki aşama / B2B', 'Kurumsal kullanıcılar', 'Medya, kamu iletişimi, marka itibar takibi', AMBER, 36),
 ]
 for i, (etiket, ad, aciklama, renk, w) in enumerate(katmanlar):
     y = 68 - i * 30
@@ -412,13 +415,13 @@ for i, (etiket, ad, aciklama, renk, w) in enumerate(katmanlar):
     ax.add_patch(FancyBboxPatch((x, y), w, 22,
                                 boxstyle='round,pad=0.008,rounding_size=0.02',
                                 facecolor=renk, edgecolor='none', zorder=2))
-    ax.text(x + 3, y + 14.5, etiket, ha='left', va='center', fontsize=6.4,
-            color='white', fontweight='bold', alpha=0.75)
-    ax.text(x + 3, y + 7.5, ad, ha='left', va='center', fontsize=8.6,
+    ax.text(x + 3, y + 16.5, etiket, ha='left', va='center', fontsize=6.2,
+            color='white', fontweight='bold', alpha=0.8)
+    ax.text(x + 3, y + 10.5, ad, ha='left', va='center', fontsize=8.6,
             color='white', fontweight='bold')
-    ax.text(x + w - 3, y + 11, aciklama, ha='right', va='center', fontsize=6.6,
+    ax.text(x + 3, y + 4.5, aciklama, ha='left', va='center', fontsize=6.4,
             color='white', alpha=0.9)
-ax.text(50, 2, 'Sistem platform içi bir alt sistem olduğu için ayrı kullanıcı kazanımı gerektirmez.',
+ax.text(50, 2, 'MVP tek bir dar kitleye odaklanır; kurumsal katman sonraki aşamada devreye girer.',
         ha='center', va='bottom', fontsize=6.5, color=GRI, style='italic')
 fig.tight_layout(pad=0.15)
 fig.savefig(os.path.join(CIK, 'g9-hedef-kitle.png'), dpi=300,
@@ -465,11 +468,11 @@ fig, ax = plt.subplots(figsize=(15.5 * CM, 8.8 * CM))
 ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
 kumeler = [('FEVER', [0]), ('LIAR', [0]), ('FakeNewsNet / CoAID', [0, 2]),
            ('MuMiN', [1, 2]), ('TwiBot-22', [2]),
-           ('ClaimReview (Türkçe)', [0]), ('Türkçe küme (özgün)', [0, 1, 2, 3])]
-motor_ad = ['Claim Engine', 'Origin Engine', 'Graph Engine', 'Manipulation Engine']
-motor_renk = [MAVI, LACI, AMBER, KIRMIZI]
+           ('ClaimReview (Türkçe)', [0]), ('Türkçe küme — değerlendirme', [0, 1, 2])]
+motor_ad = ['Evidence Engine', 'Origin Engine', 'Risk Engine']
+motor_renk = [MAVI, LACI, KIRMIZI]
 ky = [92 - i * 13.5 for i in range(len(kumeler))]
-my = [82 - i * 21 for i in range(len(motor_ad))]
+my = [76 - i * 24 for i in range(len(motor_ad))]
 for i, (ad, hedefler) in enumerate(kumeler):
     ax.add_patch(FancyBboxPatch((1, ky[i] - 4.6), 33, 9.2,
                                 boxstyle='round,pad=0.008,rounding_size=0.02',
@@ -603,10 +606,10 @@ fig, ax = plt.subplots(figsize=(16 * CM, 5.6 * CM))
 ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
 
 asamalar = [
-    ('PROBLEM', KIRMIZI, ['Doğruluk bilinmiyor', 'Köken belirsiz',
-                          'Koordinasyon görünmüyor', 'Gerekçe yok']),
-    ('TRUSTSHIELD', LACI, ['Claim Engine', 'Origin Engine',
-                           'Graph Engine', 'Manipulation Engine']),
+    ('BEŞ SORU', KIRMIZI, ['Kanıt/kaynak nedir?', 'Nasıl oluşturulmuş?',
+                          'Risk sinyali var mı?', 'Neden gösteriliyor?', 'Nasıl değiştiririm?']),
+    ('TRUSTSHIELD', LACI, ['Evidence Engine', 'Origin Engine',
+                           'Risk Engine', 'Why Engine', 'User Control']),
     ('SONUÇ', YESIL, ['Ayrıştırılmış güven kartı', 'Gerekçeli gösterim',
                       'Kullanıcı denetimli akış', 'Geri alınabilir kararlar']),
 ]
@@ -620,9 +623,9 @@ for i, (baslik, renk, maddeler) in enumerate(asamalar):
     ax.text(x + gen / 2, 90, baslik, ha='center', va='center', fontsize=8.2,
             color='white', fontweight='bold', zorder=3)
     for k, m in enumerate(maddeler):
-        yy = 70 - k * 15.5
+        yy = 72 - k * 14
         ax.plot(x + 6, yy, 'o', ms=3.2, color=renk, zorder=3)
-        ax.text(x + 10, yy, m, ha='left', va='center', fontsize=6.2,
+        ax.text(x + 10, yy, m, ha='left', va='center', fontsize=6.0,
                 color=LACI, zorder=3)
     if i < len(asamalar) - 1:
         ok(ax, x + gen + 0.8, 50, x + gen + bosl - 0.8, 50, renk=GRI, lw=1.6)
