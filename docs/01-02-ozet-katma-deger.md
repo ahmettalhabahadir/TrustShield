@@ -7,7 +7,7 @@
 
 ## 1. PROJE ÖZETİ
 
-![Şekil 0. TrustShield tek bakışta: problem, çözüm bileşenleri ve sonuç](gorseller/g15-tek-bakista.png)
+![Şekil 0. TrustShield tek bakışta: dört motor, iddiadan gerekçeli aksiyona uzanan tek bir katmanda birleşir.](gorseller/g15-tek-bakista.png)
 
 ## 1.1. Proje Konusu ve Amacı
 
@@ -25,8 +25,10 @@ soruyu yanıtlayamaz:
 | 4 | Bu içerik kendisine neden gösteriliyor? |
 
 Bu dört sorunun yanıtsız kalması, kullanıcıyı ya ayrım gözetmeyen bir şüpheye ya da
-eleştirisiz bir kabule sürüklemektedir. **TrustShield, NSosyal uygulamasının içinde çalışan
-ve bu dört soruyu her gönderi için yanıtlayan bir güven ve algoritma şeffaflığı katmanıdır.**
+eleştirisiz bir kabule sürüklemektedir. **TrustShield, bu dört soruyu her gönderi için
+yanıtlayan bir güven ve algoritma şeffaflığı katmanıdır; NSosyal gibi bir sosyal medya
+platformuna entegre edilebilecek, aynı zamanda bağımsız bir prototip olarak da
+gösterilebilecek şekilde tasarlanmıştır.**
 
 ### Amaç
 
@@ -79,6 +81,11 @@ Sistem yalnızca bağlam üretir ve kullanıcının tanımladığı politikaya g
 prototip NSosyal arayüzü örnek alınarak hazırlanan tohumlanmış bir veri kümesi üzerinde
 çalışır.
 
+**Varsayımlar.** Proje, NSosyal'e teknik erişim veya organizasyonel iş birliği
+varsayılmadan, bağımsız bir prototip/demo olarak geliştirilmektedir. Gerçek bir platforma
+entegrasyon, yarışma sonrası hedeflenen bir aşamadır; o aşamaya kadar sistem, hedef
+platformun arayüz ve veri modelini örnek alan tohumlanmış bir ortamda çalışır ve gösterilir.
+
 ### İzlenecek yöntem
 
 | Aşama | İçerik |
@@ -119,6 +126,15 @@ Proje, kendi kapsamının ötesinde iki yeniden kullanılabilir çıktı üretme
 | Özgün Türkçe değerlendirme kümesi | Türkçe iddia doğrulamada kaynak kıtlığı var; küme projeden bağımsız araştırmalara da temel oluşturabilir |
 | Federe gözlem modeli | İstemcilerin anonim parmak izi katkısıyla dağıtık yayılım çizgesi kurma yöntemi; platform verisine erişimi olmayan araştırmacılar için de uygulanabilir |
 
+**Federe gözlem modelinin sınırları.** Bu yaklaşım MVP kapsamı dışında, yol haritası
+maddesi olarak konumlandırılmıştır; üç açık risk henüz çözülmemiştir: (1) parmak izi ve
+zaman damgası kombinasyonu, tek başına kimliksiz olsa da davranış örüntüsü üzerinden
+bağlanabilirlik/deanonimizasyon riski taşıyabilir; (2) sahte istemcilerin (Sybil) çizgeye
+katkı vermesi koordinasyon tespitini hem yanlış pozitife hem yanlış negatife
+sürükleyebilir; (3) düşük kullanıcı yoğunluğunda zamansal sinyal istatistiksel olarak
+anlamsız kalır (soğuk başlangıç). Bu risklerin ele alınması, modelin MVP sonrasına
+bırakılmasının gerekçesidir.
+
 ---
 
 ## 2. KATMA DEĞER VE YENİLİKÇİLİK
@@ -127,7 +143,7 @@ Proje, kendi kapsamının ötesinde iki yeniden kullanılabilir çıktı üretme
 
 ### Problemin tanımı ve büyüklüğü
 
-![Şekil 1. Problemin ölçeğini gösteren temel göstergeler](gorseller/g5-problem-rakamlari.png)
+![Şekil 1. Türkiye'de neredeyse evrensel internet erişimi, düşen haber güveniyle bir araya geliyor.](gorseller/g5-problem-rakamlari.png)
 
 Yanlış bilgi ve dezenformasyon, Dünya Ekonomik Forumu'nun 2026 Küresel Riskler Raporu'nda
 kısa vadeli en ciddi küresel riskler arasında ikinci sırada yer almış; 67 ülkede ilk on risk
@@ -182,7 +198,8 @@ söz konusu araçların hiçbirinin kullanılmaması anlamına gelmektedir.
 
 ### Çözüm
 
-TrustShield, NSosyal içinde çalışan bütünleşik bir güven katmanıdır. Her gönderi dört analiz
+TrustShield, NSosyal gibi bir platform için tasarlanan, bağımsız bir demo olarak da
+gösterilebilen bütünleşik bir güven katmanıdır. Her gönderi dört analiz
 motorundan geçer: iddia çıkarımı ve kanıt eşleştirmesi yapan Claim Engine; yapay zekâ üretimi
 sinyallerini ve içerik kökenini değerlendiren Origin Engine; koordineli yayılımı tespit eden
 Graph Engine; ve manipülatif dil örüntülerini sınıflandıran Manipulation Engine. Çıktılar tek
@@ -204,15 +221,26 @@ dille tanımlayabilir.
 
 ### Mevcut çözümlerle karşılaştırma
 
-![Şekil 2. TrustShield ile mevcut çözümlerin yetenek karşılaştırması](gorseller/g7-rakip-matrisi.png)
+Karşılaştırma, dört ayrı ürün kategorisine karşı yapılmaktadır: X'in Topluluk Notları
+(gecikmeli, gönüllüye bağımlı bağlam notu), NewsGuard (kaynak düzeyinde güven puanı),
+Botometer benzeri bot tespit araçları (statik, hesap düzeyinde) ve C2PA Content
+Credentials koalisyonu (kriptografik köken, ancak yalnızca meta veri destekleyen içerikte
+çalışır). TrustShield'in farkı bu dördünü ayrı ayrı geliştirmek değil, tek bir gönderi
+kimliğinde birleştirmesidir.
+
+![Şekil 2. Mevcut çözümlerin hiçbiri dört yeteneği (doğrulama, köken, koordinasyon, gerekçe) birlikte sunmuyor; TrustShield bunları tek katmanda birleştiriyor.](gorseller/g7-rakip-matrisi.png)
 
 ### Pazarda uygulanabilirlik
 
-Çözümün pazara girişindeki en büyük avantajı, bağımsız bir uygulama değil **platform içi bir
-alt sistem** olarak konumlanmasıdır — bu, benzer ürünlerin başarısız olduğu kullanıcı kazanımı
-sorununu ortadan kaldırır: NSosyal'e entegre edildiğinde platformun mevcut kullanıcı tabanının
-tamamına ek maliyetsiz ulaşır. Bileşenlerin tamamı bugün üretim ortamlarında kullanılan
-teknolojilerle kurulabilir; proje yeni bir model mimarisi icadına bağımlı değildir.
+Çözümün pazara giriş stratejisi iki aşamalıdır. Kısa vadede TrustShield **bağımsız bir
+demo/prototip** olarak kendi arayüzü üzerinden çalışır ve değerlendirilebilir — bu, ürünün
+herhangi bir platform iş birliği gerçekleşmeden de gösterilebilir olmasını sağlar.
+NSosyal'e veya benzer bir platforma **entegrasyon**, ayrı ve sonraki bir iş geliştirme
+hedefidir; gerçekleştiğinde platform içi bir alt sistem olarak konumlanma, bağımsız
+uygulamaların tipik olarak karşılaştığı kullanıcı kazanım maliyetini büyük ölçüde azaltır,
+çünkü ayrı bir kullanıcı tabanı oluşturmaya gerek kalmaz. Bileşenlerin tamamı bugün üretim
+ortamlarında kullanılan teknolojilerle kurulabilir; proje yeni bir model mimarisi icadına
+bağımlı değildir.
 
 ### Yerli bileşen ve teknolojiler
 
@@ -223,4 +251,4 @@ Proje, Türkçe dil işleme katmanında yerli açık kaynak teknolojileri kullan
 | Biçimbilimsel çözümleme, kök bulma | Zemberek | Türkçeye özgü normalizasyon |
 | Dil modeli katmanı | BERTurk | Türkçe için eğitilmiş temel model |
 | Değerlendirme verisi | Özgün Türkçe küme (elle etiketli) | Yerli veri varlığı — kaynak kıtlığını giderir |
-| Hedef platform | NSosyal | Yerli sosyal medya platformu; yurt dışı servislere bağımlılığı azaltır |
+| Hedef entegrasyon senaryosu | NSosyal | Yerli sosyal medya ekosistemine yönelik tasarım; yurt dışı servislere bağımlılığı azaltma hedefi |

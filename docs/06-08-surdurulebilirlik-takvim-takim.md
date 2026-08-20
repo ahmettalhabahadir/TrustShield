@@ -15,11 +15,13 @@ TrustShield, son kullanıcıdan ücret almayan ancak üç ayrı kanaldan gelir �
 yapıda kurgulanmıştır — güvenilirlik bilgisinin ödeme gücüne bağlı hâle gelmesi, sistemin
 en çok fayda sağlayacağı kesimi dışarıda bırakırdı.
 
-![Şekil 12. Üç kanallı gelir modeli](gorseller/g13-gelir-modeli.png)
+![Şekil 12. Üç gelir kanalı, farklı müşteri segmentlerinden aynı teknik altyapıyla gelir üretir.](gorseller/g13-gelir-modeli.png)
 
-Platform lisansı birincil kanaldır; ürün NSosyal için geliştirildiğinden ilk müşteri ile ilk
-kullanıcı kitlesi aynı entegrasyonla kazanılır. Kurumsal API, aynı altyapıyı ek geliştirme
-maliyeti olmadan koordineli yayılım tespiti, itibar yönetimi ve kriz iletişimi pazarına açar.
+Platform lisansı hedeflenen birincil kanaldır; ürün NSosyal gibi bir platforma entegrasyonu
+gözeterek tasarlandığından, bir entegrasyon anlaşması gerçekleştiğinde ilk müşteri ile ilk
+kullanıcı kitlesi aynı adımda kazanılır. Kurumsal API, aynı altyapıyı ek geliştirme maliyeti
+olmadan koordineli yayılım tespiti, itibar yönetimi ve kriz iletişimi pazarına açar; bu
+kanal platform iş birliğinden bağımsız olarak da başlatılabilir.
 
 ### Sektöre ve ülke ekonomisine katma değer
 
@@ -44,7 +46,7 @@ Projenin ekonomik katma değeri üç başlıkta toplanmaktadır:
 
 ### Finansal sürdürülebilirlik
 
-![Şekil 13. Önbellek isabet oranı ile birim maliyet ilişkisi](gorseller/g14-birim-maliyet.png)
+![Şekil 13. Önbellek isabet oranı yükseldikçe birim maliyet düşer — ölçek büyüdükçe kârlılık iyileşir.](gorseller/g14-birim-maliyet.png)
 
 Sistemin işletme maliyeti, kademeli mimari sayesinde kullanıcı sayısıyla doğrusal olarak
 artmaz: maliyet gösterim sayısına değil **benzersiz iddia sayısına** bağlıdır. Kullanıcı
@@ -102,11 +104,7 @@ sunumları (14 Eylül 2026) tarihleriyle uyumlu olarak planlanmıştır.
 
 ### Zaman çizelgesi
 
-![Şekil 14. İş paketleri zaman çizelgesi ve yarışma kilometre taşları](gorseller/g4-is-paketleri.png)
-
-> **[GÖRSEL: Bu tabloyu renkli bir Gantt grafiğine dönüştürün.** Kontrol listesinde
-> "görsel bir şema/tablo ile sunulmuş" maddesi 1 puandır; renkli çubuklu bir grafik,
-> düz tablodan daha güçlü izlenim bırakır.]
+![Şekil 14. Sekiz iş paketi, yarışma takvimindeki üç kilometre taşıyla (24 Ağustos, 2-7 Eylül, 14 Eylül) uyumlu ilerler.](gorseller/g4-is-paketleri.png)
 
 ### Kilometre taşları
 
@@ -127,32 +125,28 @@ sunumları (14 Eylül 2026) tarihleriyle uyumlu olarak planlanmıştır.
 
 ## 8.1. Takım Organizasyonu ve Roller
 
-Takım, projenin gerektirdiği dört farklı uzmanlık alanını kapsayacak biçimde
-**[DOLDURUN: n]** kişiden oluşmaktadır. Proje; yapay zekâ modeli geliştirme, veri bilimi
-ve çizge analizi, yazılım geliştirme ve kullanıcı deneyimi tasarımı olmak üzere birbirinden
-farklı yetkinlikler gerektirdiğinden, ekip bilinçli olarak çok disiplinli kurulmuştur.
+Takım, şartnamenin izin verdiği asgari büyüklükte, 2 kişiden oluşmaktadır. İki kişilik bir
+ekiple dört analiz motorunu ve kullanıcı arayüzünü kapsamak için roller geniş tanımlanmış,
+sorumluluklar iş paketleri arasında dengeli dağıtılmıştır.
 
 | Üye | Disiplin | Rol | Sorumlu Olduğu İş Paketleri |
 |---|---|---|---|
-| Üye 1 | **[DOLDURUN]** | Takım kaptanı, ürün yönetimi ve raporlama | İP-1, İP-8 |
-| Üye 2 | **[DOLDURUN]** | Yapay zekâ mühendisliği — dil katmanı | İP-4, İP-7 |
-| Üye 3 | **[DOLDURUN]** | Veri bilimi — çizge ve köken katmanı | İP-3, İP-5 |
-| Üye 4 | **[DOLDURUN]** | Yazılım geliştirme ve altyapı | İP-2, İP-6 |
-| Üye 5 | **[DOLDURUN]** | UI/UX tasarımı ve kullanıcı araştırması | İP-6, İP-7 |
-| Danışman | **[DOLDURUN]** | Teknik ve akademik yönlendirme | — |
+| Üye 1 (Takım Kaptanı) | **[DOLDURUN]** | Ürün yönetimi, sistem mimarisi, Claim/Manipulation Engine, raporlama | İP-1, İP-2, İP-4, İP-8 |
+| Üye 2 | **[DOLDURUN]** | Yazılım geliştirme, Origin/Graph Engine, arayüz ve testler | İP-3, İP-5, İP-6, İP-7 |
+| Danışman *(varsa)* | **[DOLDURUN]** | Teknik ve akademik yönlendirme | — |
 
-> **[DOLDURUN: Kullanmadığınız satırları silin. Şablon kuralı gereği üyelerin isim ve
-> fotoğraf gibi kişisel bilgilerine yer verilmemelidir; yalnızca disiplin ve rol yazın.
-> Danışmanınız yoksa o satırı da kaldırın — danışman takım üye sayısına dâhil değildir.]**
+> **[DOLDURUN: Disiplin sütununu doldurun — şablon kuralı gereği isim/fotoğraf yazılmaz,
+> yalnızca disiplin (ör. "Bilgisayar Mühendisliği", "Yapay Zekâ") yazılır. Danışmanınız
+> yoksa o satırı kaldırın — danışman takım üye sayısına dâhil değildir.]**
 
 ### Disiplinlerin projeye katkısı
 
-| Yetkinlik | Projeye katkısı |
-|---|---|
-| Yapay zekâ ve veri bilimi | Analiz motorlarının geliştirilmesi |
-| Yazılım geliştirme | Kademeli mimari ve cihaz üstü çıkarımın hayata geçirilmesi |
-| Kullanıcı deneyimi | Teknik çıktının kullanıcı için anlaşılır bilgiye dönüştürülmesi — doğru bir analiz sonucu anlaşılmazsa ürünün toplumsal faydası ortadan kalkar |
+İki kişilik ekip, aralarında hem yapay zekâ/veri hem yazılım/arayüz yetkinliklerini
+kapsayacak şekilde bölünmüştür: biri analiz motorlarının model tarafına ve ürün
+yönetimine, diğeri sistem altyapısına, arayüze ve testlere odaklanır. Bu ayrım, doğru bir
+analiz sonucunun kullanıcı için anlaşılır hâle getirilmesini de kapsar — aksi hâlde ürünün
+toplumsal faydası ortadan kalkar.
 
-İş paketleri üyeler arasında, her paketin birincil sorumlusu belirlenecek biçimde
-dağıtılmıştır. Bağımlılık taşıyan İP-4/İP-5 ile prototip paketi İP-6, haftalık eşgüdüm
+İş paketleri iki üye arasında, her paketin birincil sorumlusu belirlenecek biçimde
+dağıtılmıştır. Bağımlılık taşıyan paketler ve prototip geliştirme, haftalık eşgüdüm
 toplantılarıyla senkronize edilmektedir.

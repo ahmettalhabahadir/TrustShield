@@ -37,18 +37,20 @@ https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025/turkey
 Key Findings, Haziran 2025, Erişim: 14.08.2026,
 https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025/dnr-executive-summary
 
-[7] **[YAZAR ADI]**, (2025) Exposing Cross-Platform Coordinated Inauthentic Activity in the
-Run-Up to the 2024 U.S. Election, Proceedings of the ACM on Web Conference 2025,
-DOI: 10.1145/3696410.3714698
+[7] Cinus, F., Minici, M., Luceri, L., Ferrara, E., (2025) Exposing Cross-Platform
+Coordinated Inauthentic Activity in the Run-Up to the 2024 U.S. Election, Proceedings of
+the ACM Web Conference 2025 (WWW '25), DOI: 10.1145/3696410.3714698
 
-[8] **[YAZAR ADI]**, (2025) Can Community Notes Replace Professional Fact-Checkers?,
-arXiv:2502.14132, Erişim: 14.08.2026, https://arxiv.org/abs/2502.14132
+[8] Borenstein, N., Warren, G., Elliott, D., Augenstein, I., (2025) Can Community Notes
+Replace Professional Fact-Checkers?, Proceedings of ACL 2025 (Short Papers) /
+arXiv:2502.14132, Erişim: 20.08.2026, https://arxiv.org/abs/2502.14132
 
-[9] **[YAZAR ADI]**, (2025) Community Notes Moderate Engagement With and Diffusion of False
-Information Online, arXiv:2502.13322, Erişim: 14.08.2026, https://arxiv.org/abs/2502.13322
+[9] Slaughter, I., Peytavin, A., Ugander, J., Saveski, M., (2025) Community Notes Moderate
+Engagement With and Diffusion of False Information Online, arXiv:2502.13322,
+Erişim: 20.08.2026, https://arxiv.org/abs/2502.13322
 
-[10] Ahrefs, AI Content in Google Search Results Study, 2025, Erişim: 14.08.2026,
-**[DOLDURUN: çalışmanın doğrudan bağlantısını ekleyin]**
+[10] Ahrefs, 80+ Up-to-Date AI Statistics for 2025, Mayıs 2025, Erişim: 20.08.2026,
+https://ahrefs.com/blog/ai-statistics/
 
 [11] Rossi, E., Chamberlain, B., Frasca, F., Eynard, D., Monti, F., Bronstein, M.,
 (2020) Temporal Graph Networks for Deep Learning on Dynamic Graphs, arXiv:2006.10637,

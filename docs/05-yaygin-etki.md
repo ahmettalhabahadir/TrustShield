@@ -11,23 +11,19 @@
 
 ### Erişim potansiyeli
 
-TrustShield bağımsız bir uygulama değil, NSosyal içinde çalışan bir alt sistem olarak
-tasarlanmıştır. Bu mimari tercih yaygın etki açısından belirleyicidir: sistemin kullanıcıya
-ulaşması için ayrı bir indirme, kayıt veya kullanıcı kazanım süreci gerekmez. Platformun
-mevcut ve gelecekteki kullanıcı tabanının tamamı, ilk günden itibaren erişim alanı
-içindedir. Doğrulama araçlarının yaygınlaşmasının önündeki en büyük engel olan
-"kullanıcının aracı bulup kurması" adımı böylece tamamen ortadan kalkar.
+TrustShield, bağımsız bir uygulama olarak da NSosyal gibi bir platform içinde çalışan bir
+alt sistem olarak da tasarlanmıştır. Bu mimari esneklik yaygın etki açısından
+belirleyicidir: bir platforma entegrasyon gerçekleştiğinde, sistemin kullanıcıya ulaşması
+için ayrı bir indirme, kayıt veya kullanıcı kazanım süreci gerekmez — platformun mevcut
+kullanıcı tabanı doğrudan erişim alanına girer. Doğrulama araçlarının yaygınlaşmasının
+önündeki en büyük engel olan "kullanıcının aracı bulup kurması" adımı, entegrasyon
+senaryosunda tamamen ortadan kalkar; entegrasyona kadar geçen sürede ise bağımsız demo
+kullanıcıları ve pilot testler üzerinden erişim sağlanır.
 
-Erişimin ölçeği, Türkiye'nin dijital göstergeleriyle doğrudan ilişkilidir. Türkiye
-İstatistik Kurumu'nun 2025 yılı araştırmasına göre 16-74 yaş grubundaki bireylerde internet
-kullanım oranı %90,9'a yükselmiştir; en çok kullanılan uygulamalar sırasıyla %88,6 ile
-WhatsApp, %72,9 ile YouTube ve %68,1 ile Instagram'dır [2]. Bu tablo, sosyal medya
-üzerinden bilgiye erişmenin istisnai bir davranış değil, toplumun neredeyse tamamını
-kapsayan bir norm olduğunu göstermektedir. Aynı dönemde Türkiye'de habere duyulan genel
-güven %33 ile 2015'ten bu yana en düşük seviyeye gerilemiş, kullanıcıların %36'sı haberi
-sosyal medya veya mesajlaşma uygulamaları aracılığıyla paylaşır hâle gelmiştir [5].
-Güvenin düştüğü ancak paylaşımın sürdüğü bu ortam, bağlam sağlayan bir katmanın
-karşılayacağı ihtiyacın büyüklüğünü ortaya koymaktadır.
+Erişimin ölçeği, Türkiye'nin dijital göstergeleriyle doğrudan ilişkilidir — internet
+kullanımı, en çok kullanılan uygulamalar ve habere duyulan güvenin seyri Bölüm 2.1'de
+istatistiklerle ortaya konmuştur [2,5]. Güvenin düştüğü ancak paylaşımın sürdüğü bu ortam,
+bağlam sağlayan bir katmanın karşılayacağı ihtiyacın büyüklüğünü göstermektedir.
 
 Sistem üç kullanıcı katmanına aynı anda ulaşır:
 
@@ -49,14 +45,14 @@ Projenin ekosisteme katkısı üç düzeyde gerçekleşir:
 | Düzey | Katkı |
 |---|---|
 | Platform | Büyük platformların tamamı öneri algoritmasını kapalı kutu işletir; gösterim gerekçesi açıklayan ve akış politikasını kullanıcıya bırakan bir platform, sektörde doldurulmamış bir konumu işgal eder |
-| İçerik üreticisi | Köken doğrulama ve koordinasyon analizi, bugün büyük ölçüde tespitsiz kalan kopyalama/taklit/koordineli hedef almayı görünür kılar; nitelik öne çıkar, taklit geri plana düşer |
+| İçerik üreticisi | Köken doğrulama ve koordinasyon analizi, bugün büyük ölçüde tespitsiz kalan kopyalama/taklit/koordineli hedef almayı görünür kılar; nitelik öne çıkar, taklit geri plana düşer — bu da doğrulanmış üreticinin görünürlüğüne ve marka iş birliği potansiyeline dolaylı katkı sağlar |
 | Ekosistem | Manipülasyon kampanyalarının etkili olması organik görünmesine bağlıdır; zamansal örüntülerin tespit edilebilir hâle gelmesi maliyeti yükseltip caydırıcılık yaratır [7] |
 
 ### Toplumsal fayda: uygulama senaryoları
 
 Sistemin toplumsal faydası, gerçek ve yüksek riskli bilgi ortamlarında somutlaşır.
 
-![Şekil 11. Dört yüksek riskli bilgi ortamında sistemin işleyişi](gorseller/g12-senaryolar.png)
+![Şekil 11. Dört yüksek riskli ortamda sistem, içeriği silmeden köken ve kanıt bilgisiyle bağlam ekler.](gorseller/g12-senaryolar.png)
 
 | Ortam | Risk | Sistemin katkısı |
 |---|---|---|

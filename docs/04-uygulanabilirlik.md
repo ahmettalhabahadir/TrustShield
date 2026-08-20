@@ -29,7 +29,7 @@ göstermektedir. Varsayımlar platform verisiyle doğrulandıkça güncellenecek
 | Kademe 2 sonrası | Doğrulama önbelleği isabeti (%60) | 60.000 |
 | **Kademe 3 — derin analiz** | **LLM, görü ve çizge modelleri** | **60.000** |
 
-![Şekil 9. Kademeli mimarinin günlük işlem hacmine etkisi (logaritmik ölçek)](gorseller/g8-islem-hacmi.png)
+![Şekil 9. Kademeli filtreleme, günlük derin analiz hacmini naif yaklaşıma göre yaklaşık 830 kat azaltır.](gorseller/g8-islem-hacmi.png)
 
 *Varsayımlar: günlük 1.000.000 gönderi, gönderi başına ortalama 50 gösterim, Kademe 1
 eleme oranı %85, önbellek isabet oranı %60.*
@@ -64,7 +64,7 @@ etkin olduğu ve olmadığı kullanıcı grupları arasında karşılaştırmal�
 
 ### Tanım
 
-![Şekil 10. Üç kullanıcı katmanı ve erişim yapısı](gorseller/g9-hedef-kitle.png)
+![Şekil 10. Üç kullanıcı katmanı, aynı analiz altyapısından farklı fayda elde eder.](gorseller/g9-hedef-kitle.png)
 
 Projenin hedef kitlesi üç katmanda tanımlanmıştır ve her katmanın sistemden beklediği
 fayda farklıdır:
@@ -80,26 +80,29 @@ fayda farklıdır:
 Türkiye İstatistik Kurumu'nun 2025 verilerine göre 16-74 yaş grubunda internet kullanım
 oranı %90,9'dur [2]. Ülke nüfusunun 86 milyon, internet penetrasyonunun %87 düzeyinde
 olduğu dikkate alındığında [5], birincil kitlenin ulaşılabilir büyüklüğü onlarca milyon
-kullanıcıyla ifade edilmektedir. Sistem NSosyal içinde bir alt sistem olarak çalıştığı
-için, bu kitleye erişim ayrı bir kullanıcı kazanım yatırımı gerektirmez.
+kullanıcıyla ifade edilmektedir. Sistem NSosyal gibi bir platforma alt sistem olarak
+entegre edildiği senaryoda, bu kitleye erişim ayrı bir kullanıcı kazanım yatırımı
+gerektirmez; entegrasyon gerçekleşene kadar erişim, bağımsız demo/prototip kullanıcıları ve
+pilot testlerle sınırlıdır.
 
 ### Hedef kitleyle uyumun doğrulanması
 
-Ürünün hedef kitlenin gerçek ihtiyacına karşılık geldiğini doğrulamak amacıyla
-**[DOLDURUN: n]** katılımcıyla bir kullanıcı araştırması yürütülmüştür. Araştırma;
-katılımcıların sosyal medyada karşılaştıkları içeriğin doğruluğundan ne sıklıkla şüphe
-ettiklerini, şüphelendiklerinde ne yaptıklarını ve hangi bilginin kararlarını
-değiştireceğini ölçmüştür.
+Ürünün hedef kitlenin gerçek ihtiyacına karşılık geldiğini doğrulamak amacıyla 15-20
+katılımcıyla bir kullanıcı araştırması yürütülecektir. Araştırma; katılımcıların sosyal
+medyada karşılaştıkları içeriğin doğruluğundan ne sıklıkla şüphe ettiklerini,
+şüphelendiklerinde ne yaptıklarını ve hangi bilginin kararlarını değiştireceğini
+ölçmeyi hedefler.
 
-| Bulgu | Sonuç |
+| Ölçülecek soru | Yöntem |
 |---|---|
-| İçeriğin doğruluğundan sıklıkla şüphe edenler | **[DOLDURUN]** |
-| Şüphelendiğinde ayrıca doğrulama yapanlar | **[DOLDURUN]** |
-| Doğrulama yapmama gerekçesi olarak "zaman/zahmet" diyenler | **[DOLDURUN]** |
-| Gönderi yanında güvenilirlik bilgisini faydalı bulanlar | **[DOLDURUN]** |
-| Akışını kendisi denetlemek isteyenler | **[DOLDURUN]** |
+| İçeriğin doğruluğundan ne sıklıkla şüphe ediyorlar | 5'li Likert ölçekli anket sorusu |
+| Şüphelendiklerinde ayrıca doğrulama yapıyorlar mı | Anket + açık uçlu takip sorusu |
+| Doğrulama yapmama gerekçeleri | Açık uçlu soru, tematik kodlama |
+| Gönderi yanında güvenilirlik bilgisinin faydası | 5'li Likert ölçekli anket sorusu |
+| Akışını kendisi denetlemek isteyip istemedikleri | Evet/hayır + gerekçe |
 
-**[DOLDURUN: Bulguların ürün kararlarına nasıl yansıdığını iki cümleyle yazın.]**
+Araştırma mentörlük döneminde tamamlanacak; bulgular ve ürün kararlarına yansımaları final
+raporuna eklenecektir.
 
 ---
 
@@ -123,13 +126,15 @@ Sistemin bileşenlerinin tamamı bugün üretim ortamlarında kullanılan, olgun
 teknolojilerle kurulabilir durumdadır. Projenin özgünlüğü yeni bir model mimarisi icat
 etmekte değil, bu bileşenleri maliyeti denetim altında tutan bir hat içinde birleştirmesindedir
 — bu tercih uygulanabilirlik riskini bilinçli olarak düşürür. Mevcut teknoloji hazırlık düzeyi
-**[DOLDURUN: TRL değeri]** olarak değerlendirilmektedir.
+**TRL 3** (kavram doğrulaması ve ayrıntılı mimari tasarım tamamlanmış; bileşen düzeyinde
+doğrulama prototip aşamasında hedeflenmektedir) olarak değerlendirilmektedir; Bölüm 3.1'deki
+aşamalı MVP stratejisiyle final aşamasına kadar TRL 4-5'e ilerlemesi hedeflenir.
 
 | Faktör | Durum |
 |---|---|
 | Bileşen olgunluğu | Dil modelleri, çok dilli DL çıkarımı, vektör arama, zamansal çizge kütüphaneleri — hepsi üretimde kullanılıyor |
-| Kullanıcı kazanımı riski | Yok — NSosyal içinde alt sistem olarak konumlanır, geriye yalnızca teknik entegrasyon kalır |
+| Kullanıcı kazanımı riski | Bağımsız demo olarak düşük; NSosyal'e entegrasyon gerçekleşirse ayrıca düşer (bkz. Bölüm 2.2 Pazarda uygulanabilirlik) |
 | Sunucu ölçeklenmesi | Durumsuz servisler + kuyruk tabanlı asenkron işleme → yatay ölçeklenir |
 | Birim maliyet eğilimi | Kullanıcı sayısı arttıkça önbellek isabeti yükselir, birim maliyet düşer |
 | Sunucu yükü | Cihaz üstü ön filtre istek hacmini kaynağında sınırlar |
-| Büyüme tavanı | Çekirdek platformdan bağımsız; açık protokollerle NSosyal dışına genişletilebilir |
+| Büyüme tavanı | Çekirdek platformdan bağımsız; açık protokollerle farklı platformlara genişletilebilir |
