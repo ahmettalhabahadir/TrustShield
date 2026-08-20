@@ -9,23 +9,14 @@
 
 ### Hesaplama maliyetinde sağlanan verimlilik
 
-Sosyal medya ölçeğinde çalışan bir güven katmanının önündeki temel engel, doğruluk değil
-maliyettir. Her gönderiyi her gösterimde ağır modellerden geçiren bir tasarım, hem
-ekonomik olarak sürdürülemez hem de akışı bekletecek kadar yavaştır. TrustShield'in
-kademeli mimarisi bu maliyeti üç ayrı mekanizmayla düşürür.
+Sosyal medya ölçeğinde çalışan bir güven katmanının önündeki temel engel doğruluk değil
+**maliyettir**. TrustShield'in kademeli mimarisi bu maliyeti üç mekanizmayla düşürür:
 
-**Birincisi, analizin gösterim başına değil gönderi başına yapılmasıdır.** Bir gönderinin
-güvenilirliği, onu kimin gördüğünden bağımsızdır; dolayısıyla içerik düzeyindeki analiz
-bir kez yapılıp o gönderiyi gören tüm kullanıcılara sunulabilir. Bu, maliyeti kullanıcı
-sayısından bağımsız hâle getirir.
-
-**İkincisi, iddia düzeyinde tekilleştirmedir.** Viral bir iddia, birbirinden farklı
-binlerce gönderi içinde yeniden dolaşıma girer. Sistem, gönderiyi değil içindeki iddiayı
-anahtar olarak kullandığı için aynı iddiayı taşıyan gönderiler tek bir doğrulama sonucunu
-paylaşır.
-
-**Üçüncüsü, kademeli elemedir.** Gönderilerin büyük çoğunluğu doğrulanabilir bir olgusal
-iddia içermez; bu içerik Kademe 1'de ayrılır ve hiçbir sunucu maliyeti üretmez.
+| Mekanizma | Nasıl çalışır | Etkisi |
+|---|---|---|
+| Gönderi başına analiz | İçerik düzeyindeki analiz bir kez yapılıp tüm izleyicilere sunulur | Maliyet kullanıcı sayısından bağımsızlaşır |
+| İddia düzeyinde tekilleştirme | Aynı iddiayı taşıyan farklı gönderiler tek doğrulama sonucunu paylaşır | Viral içerikte tekrarlı analiz önlenir |
+| Kademeli eleme | Olgusal iddia içermeyen gönderiler Kademe 1'de ayrılır | Bu içerik hiçbir sunucu maliyeti üretmez |
 
 Aşağıdaki tablo, belirtilen varsayımlar altında günlük işlem hacminin nasıl daraldığını
 göstermektedir. Varsayımlar platform verisiyle doğrulandıkça güncellenecektir.
@@ -76,21 +67,13 @@ etkin olduğu ve olmadığı kullanıcı grupları arasında karşılaştırmal�
 ![Şekil 10. Üç kullanıcı katmanı ve erişim yapısı](gorseller/g9-hedef-kitle.png)
 
 Projenin hedef kitlesi üç katmanda tanımlanmıştır ve her katmanın sistemden beklediği
-fayda farklıdır.
+fayda farklıdır:
 
-**Birincil kitle — bilgi tüketen son kullanıcı.** Sosyal medyayı haber ve bilgi kaynağı
-olarak kullanan, ancak gördüğü içeriği bağımsız olarak doğrulama alışkanlığı, zamanı veya
-aracı olmayan kullanıcılardır. Bu kitlenin ayırt edici özelliği, mevcut doğrulama
-araçlarını *kullanmıyor* olmasıdır; sistem bu nedenle kullanıcıdan çaba bekleyen değil,
-bilgiyi içeriğin yanına getiren bir tasarımla kurgulanmıştır.
-
-**İkincil kitle — içerik üreticileri.** Özgün içerik üreten, bu içeriğin izinsiz
-kopyalanması, yapay zekâ ile taklit edilmesi veya koordineli hesaplar tarafından hedef
-alınması riski taşıyan kullanıcılardır.
-
-**Üçüncül kitle — kurumsal kullanıcılar.** Medya kuruluşları, kamu iletişim birimleri ve
-marka itibarını izleyen ekipler; koordineli yayılım sinyallerine erken erişim ihtiyacı
-duyarlar.
+| Katman | Kim | Ayırt edici özellik |
+|---|---|---|
+| Birincil | Bilgiyi doğrulama alışkanlığı, zamanı veya aracı olmayan son kullanıcı | Mevcut doğrulama araçlarını *kullanmıyor*; sistem bilgiyi içeriğin yanına getirir |
+| İkincil | İçerik üreticileri | Kopyalanma, taklit veya koordineli hedef alınma riski taşır |
+| Üçüncül | Medya, kamu iletişimi, marka itibar ekipleri | Koordineli yayılım sinyaline erken erişim ihtiyacı |
 
 ### Büyüklük
 
@@ -124,60 +107,29 @@ değiştireceğini ölçmüştür.
 
 ### Yeniliğin teknik düzeyi
 
-Projenin teknolojik yeniliği dört noktada somutlaşmaktadır. Bu bölümde her birinin
-*nasıl* çalıştığı açıklanmaktadır.
+Projenin teknolojik yeniliği dört noktada somutlaşmaktadır — her biri *nasıl* çalıştığıyla
+birlikte:
 
-**Bütünleşik değerlendirme.** Doğrulama, köken tespiti, koordinasyon analizi ve öneri
-gerekçesi bugün birbirinden bağımsız araçlarda çözülmektedir. TrustShield bu dört sinyali
-ortak bir gönderi kimliği üzerinde birleştirir ve tek bir karar noktasında toplar. Teknik
-zorluk, farklı güvenilirlik düzeylerine ve farklı gecikme profillerine sahip çıktıların
-tek bir arayüzde tutarlı biçimde sunulmasıdır; bu, çıktıların tek skora indirgenmemesi ve
-her boyutun kendi güven aralığıyla taşınmasıyla çözülmüştür.
-
-**Kademeli değerlendirme ve iddia düzeyinde tekilleştirme.** Sistemin ölçeklenebilirliği,
-gönderiyi değil iddiayı işlem birimi olarak alan bir anahtarlama şemasına dayanır.
-Gönderiden çıkarılan iddia normalize edilip gömme uzayında temsil edilir; yakın kopya
-eşiğini aşan iddialar aynı doğrulama kaydına bağlanır. Böylece doğrulama maliyeti gönderi
-sayısıyla değil benzersiz iddia sayısıyla orantılı hâle gelir.
-
-**Zamansal çizge analizi.** Koordinasyon tespitinde yaygın yaklaşım, hesap özniteliklerine
-veya statik takip çizgesine dayanır. Bu yaklaşım, birbirini takip etmeyen ancak eşgüdümlü
-hareket eden hesap kümelerini kaçırır. TrustShield, hesap–gönderi–bağlantı etkileşimlerini
-zaman damgalı bir çizge olarak modelleyerek paylaşım ritmini de öznitelik hâline getirir.
-Koordineli hesapların paylaşım zamanlarının dar bir pencerede yoğunlaştığı, organik
-kullanıcıların ise güne yayıldığı yönündeki bulgular bu yaklaşımın dayanağıdır [7].
-
-**Sunucu–cihaz ayrımı.** İçerik düzeyindeki analiz sunucuda, kullanıcı düzeyindeki
-kişiselleştirme cihazda yürütülür. Bu ayrım yalnızca bir mahremiyet tercihi değil, aynı
-zamanda bir ölçeklenme çözümüdür: kişiselleştirme yükü kullanıcı sayısıyla birlikte
-sunucuda değil, cihazlarda dağıtık olarak artar.
+| Yenilik | Teknik çözüm |
+|---|---|
+| Bütünleşik değerlendirme | Dört bağımsız sinyal (doğrulama, köken, koordinasyon, öneri gerekçesi) ortak gönderi kimliğinde birleşir; her boyut kendi güven aralığıyla taşınır, tek skora indirgenmez |
+| Kademeli değerlendirme ve iddia tekilleştirme | İşlem birimi gönderi değil iddiadır; iddia gömme uzayında temsil edilir, yakın kopya eşiğini aşanlar aynı kayda bağlanır |
+| Zamansal çizge analizi | Etkileşimler zaman damgalı çizge olarak modellenir; paylaşım ritmi öznitelik hâline gelir ve statik takip çizgesinin kaçırdığı koordinasyonu yakalar [7] |
+| Sunucu–cihaz ayrımı | İçerik analizi sunucuda, kişiselleştirme cihazda — hem mahremiyet hem ölçeklenme çözümü: kişiselleştirme yükü sunucuda değil cihazlarda dağıtık artar |
 
 ### Hayata geçirilebilirlik
 
-Sistemin bileşenlerinin tamamı bugün mevcut ve olgunlaşmış teknolojilerle kurulabilir
-durumdadır. Dil modelleri, çok dilli doğal dil çıkarımı, vektör arama, zamansal çizge
-kütüphaneleri ve cihaz üstü çıkarım çalışma zamanları erişilebilir ve üretim ortamlarında
-kullanılmaktadır. Projenin özgünlüğü yeni bir model mimarisi icat etmekte değil, bu
-bileşenlerin maliyeti denetim altında tutan bir hat içinde birleştirilmesindedir. Bu
-tercih, uygulanabilirlik riskini bilinçli olarak düşürmektedir.
+Sistemin bileşenlerinin tamamı bugün üretim ortamlarında kullanılan, olgunlaşmış
+teknolojilerle kurulabilir durumdadır. Projenin özgünlüğü yeni bir model mimarisi icat
+etmekte değil, bu bileşenleri maliyeti denetim altında tutan bir hat içinde birleştirmesindedir
+— bu tercih uygulanabilirlik riskini bilinçli olarak düşürür. Mevcut teknoloji hazırlık düzeyi
+**[DOLDURUN: TRL değeri]** olarak değerlendirilmektedir.
 
-Projenin mevcut teknoloji hazırlık düzeyi **[DOLDURUN: TRL değeri]** olarak
-değerlendirilmektedir; yarışma takvimi sonunda çalışan prototiple doğrulanması
-hedeflenmektedir.
-
-Ürünleşme açısından belirleyici avantaj, sistemin NSosyal içinde bir alt sistem olarak
-konumlanmasıdır. Bağımsız bir uygulama olsaydı kullanıcı kazanımı en büyük risk kalemi
-olurdu; platform içi bir katman olarak bu risk ortadan kalkmakta, geriye yalnızca teknik
-entegrasyon kalmaktadır.
-
-### Ölçeklenebilirlik
-
-Sunucu tarafı, durumsuz servisler ve kuyruk tabanlı asenkron işleme üzerine kurulduğu için
-yatay olarak ölçeklenir; yük arttığında işleyici sayısı çoğaltılır. Doğrulama önbelleği
-paylaşımlı olduğundan, kullanıcı sayısı arttıkça isabet oranı yükselir ve birim maliyet
-düşer. Cihaz üstü ön filtre, sunucuya ulaşan istek hacmini kaynağında sınırlar.
-
-Uzun vadede sistemin çekirdeği platformdan bağımsız bir analiz katmanı olduğu için, açık
-sosyal ağ protokolleri ve istemci tarafı uygulamalar aracılığıyla NSosyal dışına
-genişletilebilir. Bu, ürünün büyüme tavanını tek bir platformun büyüklüğüyle sınırlı
-olmaktan çıkarır.
+| Faktör | Durum |
+|---|---|
+| Bileşen olgunluğu | Dil modelleri, çok dilli DL çıkarımı, vektör arama, zamansal çizge kütüphaneleri — hepsi üretimde kullanılıyor |
+| Kullanıcı kazanımı riski | Yok — NSosyal içinde alt sistem olarak konumlanır, geriye yalnızca teknik entegrasyon kalır |
+| Sunucu ölçeklenmesi | Durumsuz servisler + kuyruk tabanlı asenkron işleme → yatay ölçeklenir |
+| Birim maliyet eğilimi | Kullanıcı sayısı arttıkça önbellek isabeti yükselir, birim maliyet düşer |
+| Sunucu yükü | Cihaz üstü ön filtre istek hacmini kaynağında sınırlar |
+| Büyüme tavanı | Çekirdek platformdan bağımsız; açık protokollerle NSosyal dışına genişletilebilir |

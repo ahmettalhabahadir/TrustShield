@@ -595,3 +595,39 @@ fig.savefig(os.path.join(CIK, 'g14-birim-maliyet.png'), dpi=300,
             bbox_inches='tight', facecolor='white')
 plt.close(fig)
 print('G10-G14 uretildi')
+
+# ==========================================================
+# G15 — TRUSTSHIELD TEK BAKISTA (Bolum 1 acilis semasi)
+# ==========================================================
+fig, ax = plt.subplots(figsize=(16 * CM, 5.6 * CM))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100); ax.axis('off')
+
+asamalar = [
+    ('PROBLEM', KIRMIZI, ['Doğruluk bilinmiyor', 'Köken belirsiz',
+                          'Koordinasyon görünmüyor', 'Gerekçe yok']),
+    ('TRUSTSHIELD', LACI, ['Claim Engine', 'Origin Engine',
+                           'Graph Engine', 'Manipulation Engine']),
+    ('SONUÇ', YESIL, ['Ayrıştırılmış güven kartı', 'Gerekçeli gösterim',
+                      'Kullanıcı denetimli akış', 'Geri alınabilir kararlar']),
+]
+gen, bosl = 30, 5
+for i, (baslik, renk, maddeler) in enumerate(asamalar):
+    x = i * (gen + bosl)
+    ax.add_patch(FancyBboxPatch((x, 4), gen, 92,
+                                boxstyle='round,pad=0.008,rounding_size=0.02',
+                                facecolor='#FAFBFC', edgecolor=renk, linewidth=1.3, zorder=1))
+    ax.add_patch(Rectangle((x, 84), gen, 12, facecolor=renk, edgecolor='none', zorder=2))
+    ax.text(x + gen / 2, 90, baslik, ha='center', va='center', fontsize=8.2,
+            color='white', fontweight='bold', zorder=3)
+    for k, m in enumerate(maddeler):
+        yy = 70 - k * 15.5
+        ax.plot(x + 6, yy, 'o', ms=3.2, color=renk, zorder=3)
+        ax.text(x + 10, yy, m, ha='left', va='center', fontsize=6.2,
+                color=LACI, zorder=3)
+    if i < len(asamalar) - 1:
+        ok(ax, x + gen + 0.8, 50, x + gen + bosl - 0.8, 50, renk=GRI, lw=1.6)
+fig.tight_layout(pad=0.15)
+fig.savefig(os.path.join(CIK, 'g15-tek-bakista.png'), dpi=300,
+            bbox_inches='tight', facecolor='white')
+plt.close(fig)
+print('G15 uretildi')

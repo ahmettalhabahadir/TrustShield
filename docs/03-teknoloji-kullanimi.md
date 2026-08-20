@@ -11,19 +11,14 @@
 
 ### Geliştirme yöntemi
 
-Proje, birbirini besleyen dört aşamalı yinelemeli bir süreçle yürütülmektedir. İlk aşamada
-problem alanına ilişkin literatür ve mevcut çözümler taranmış, sistemin karşılaması gereken
-gereksinimler belirlenmiştir. İkinci aşamada sistem mimarisi ve veri akışı tasarlanmış,
-bileşenler arasındaki sınırlar tanımlanmıştır. Üçüncü aşamada modeller açık veri kümeleri
-üzerinde geliştirilmekte, dördüncü aşamada ise nicel performans ölçümü ve kullanıcı
-testleriyle doğrulanmaktadır. Doğrulama aşamasının çıktıları tasarım aşamasına geri
-beslenmekte, süreç bu döngü içinde ilerlemektedir.
+Dört aşamalı yinelemeli süreç Bölüm 1.2'de tanımlanmıştır. Yöntemin akademik temeli üç
+alana dayanmaktadır:
 
-Yöntemin akademik temeli üç alana dayanmaktadır: iddia çıkarımı ve doğal dil çıkarımı
-yoluyla kanıt eşleştirme, çok modlu içerik köken analizi ve zamansal çizge öğrenmesi.
-Özellikle üçüncü alan, koordineli hesapların paylaşım zamanlarının dar bir pencerede
-yoğunlaştığı, organik kullanıcıların ise güne yayıldığı yönündeki bulgulara dayanmaktadır
-[7]; davranış ritmi, statik çizge özniteliklerinin yakalayamadığı ayırt edici bir sinyaldir.
+| Alan | Kullanım amacı |
+|---|---|
+| İddia çıkarımı ve doğal dil çıkarımı | Kanıt–iddia eşleştirmesi |
+| Çok modlu içerik köken analizi | YZ üretimi sinyalleri ve köken doğrulama |
+| Zamansal çizge öğrenmesi | Koordinasyon tespiti — davranış ritmi statik özniteliklerin yakalayamadığı bir sinyaldir [7] |
 
 ### Sistem mimarisi
 
@@ -117,30 +112,15 @@ jüri incelemesine açıktır.
 
 ![Şekil 6. Beş adımlı veri ön işleme hattı](gorseller/g10-veri-hatti.png)
 
-Ön işleme hattı, ham gönderiyi model girdisine dönüştüren beş adımdan oluşur.
+Ön işleme hattı, ham gönderiyi model girdisine dönüştüren beş adımdan oluşur:
 
-**Temizleme ve normalizasyon.** Gönderi metnindeki biçimlendirme artıkları, tekrar eden
-noktalama ve görünmez karakterler temizlenir. Türkçe metinlerde büyük-küçük harf dönüşümü
-dile özgü kurallara göre yapılır; noktalı/noktasız `i` ayrımının yanlış ele alınması
-gömme kalitesini bozduğu için bu adım ayrıca doğrulanır. Biçimbilimsel çözümleme ve kök
-bulma işlemleri Zemberek ile gerçekleştirilir.
-
-**Dil tespiti ve yönlendirme.** Her gönderi dil etiketiyle işaretlenir; Türkçe içerik
-Türkçe modellere, diğer diller çok dilli modellere yönlendirilir.
-
-**Segmentasyon ve iddia ayrıştırma.** Gönderi, doğrulanabilir önerme birimlerine ayrılır.
-Bu adımda olgusal iddialar ile kanaat bildiren ifadeler ayrıştırılır; normatif ifadeler
-doğruluk puanlamasının dışında tutulur. Bu ayrım, sistemin kanaat skorlamamasını sağlayan
-tasarım ilkesinin veri düzeyindeki karşılığıdır.
-
-**Yinelenen içerik eleme.** Eğitim kümesinde birbirinin kopyası veya yakın kopyası olan
-örnekler, gömme benzerliği eşiğine göre elenir. Bu adım yalnızca veri kalitesi için değil,
-eğitim ve test kümeleri arasında sızıntı oluşmasını engellemek için de kritiktir.
-
-**Etiket dengeleme ve bölme.** Sınıf dağılımındaki dengesizlik, azınlık sınıfına ağırlık
-verilerek telafi edilir. Veri; eğitim, doğrulama ve test olmak üzere tabakalı biçimde
-ayrılır. Çizge ve zamansal bileşenlerde bölme **zaman esaslı** yapılır: test kümesi,
-eğitim penceresinden sonraki bir döneme ait örneklerden oluşur.
+| Adım | İşlem | Neden önemli |
+|---|---|---|
+| 1. Temizleme ve normalizasyon | Biçimlendirme artıklarının temizlenmesi, Türkçeye özgü büyük/küçük harf ve `i` ayrımı, Zemberek ile kök bulma | Yanlış normalizasyon gömme kalitesini bozar |
+| 2. Dil tespiti ve yönlendirme | Türkçe içerik Türkçe modellere, diğerleri çok dilli modele yönlendirilir | Doğru model seçimi |
+| 3. Segmentasyon ve iddia ayrıştırma | Doğrulanabilir önermeler, olgu/kanaat ayrımı ile çıkarılır | Kanaat skorlanmama ilkesinin veri karşılığı |
+| 4. Yinelenen içerik eleme | Kopya/yakın kopya örnekler gömme benzerliğine göre elenir | Eğitim–test sızıntısını engeller |
+| 5. Etiket dengeleme ve bölme | Azınlık sınıfı ağırlıklandırılır; çizge/zamansal bileşenlerde bölme **zaman esaslı** yapılır | Test kümesi eğitim penceresinden sonraki döneme ait olmalıdır |
 
 ### Model eğitimi
 
@@ -165,18 +145,17 @@ donanımı: **[DOLDURUN: kullanılacak donanım]**.
 
 Aşırı öğrenmeye karşı altı önlem birlikte uygulanmaktadır:
 
-1. **Tabakalı bölme** ile sınıf dağılımının üç kümede de korunması.
-2. **Çapraz doğrulama** ile tek bir bölmeye bağlı sonuç raporlanmasının önlenmesi.
-3. **Erken durdurma**; doğrulama kaybı belirlenen sabır süresi boyunca iyileşmediğinde
-   eğitimin sonlandırılması.
-4. **Düzenlileştirme**; dropout ve ağırlık sönümü ile model kapasitesinin sınırlanması.
-5. **Sınıf ağırlıklandırma** ile azınlık sınıfının ezilmesinin engellenmesi.
-6. **Zamansal ayrım**; çizge modellerinde test verisinin eğitim penceresinden sonraki
-   döneme ait olması. Bu önlem, sosyal ağ verisinde rastgele bölmenin geleceğe ait bilgiyi
-   sızdırarak başarımı yapay biçimde yükseltmesini engeller ve gerçekçi bir ölçüm sağlar.
+| # | Önlem | Amaç |
+|---|---|---|
+| 1 | Tabakalı bölme | Sınıf dağılımının üç kümede de korunması |
+| 2 | Çapraz doğrulama | Tek bölmeye bağlı sonuç raporlanmasının önlenmesi |
+| 3 | Erken durdurma | Doğrulama kaybı iyileşmeyince eğitimin sonlandırılması |
+| 4 | Düzenlileştirme | Dropout ve ağırlık sönümü ile kapasite sınırlama |
+| 5 | Sınıf ağırlıklandırma | Azınlık sınıfının ezilmesinin engellenmesi |
+| 6 | **Zamansal ayrım** | Test verisi eğitim penceresinden sonraki döneme ait olmalı — rastgele bölme geleceğe ait bilgiyi sızdırıp başarımı yapay yükseltir |
 
-Ayrıca modellerin genelleme yeteneği, eğitimde hiç görülmemiş bir veri kümesi üzerinde
-alan dışı sınama ile de kontrol edilmektedir.
+Modellerin genelleme yeteneği ayrıca, eğitimde hiç görülmemiş bir veri kümesi üzerinde alan
+dışı sınamayla da kontrol edilir.
 
 ### Performans metrikleri
 
@@ -207,15 +186,17 @@ bir içeriğin gözden kaçmasının maliyetinden yüksektir.
 
 ### Düşmanca dayanıklılık
 
-Sistem, tasarımı gereği düşmanın ürettiği metni işleyen bir dil modeli içerdiğinden,
-dolaylı komut enjeksiyonuna açık bir yüzeye sahiptir: gönderi metnine gömülen "önceki
-talimatları yok say" biçimindeki ifadeler modelin davranışını değiştirmeyi hedefleyebilir.
-Buna karşı üç önlem uygulanır: analiz edilen içeriğin model istemine talimat olarak değil
-yalnızca veri olarak, ayrı bir kanaldan geçirilmesi; modelin yapılandırılmış çıktı üretmeye
-zorlanması ve şema dışı çıktının reddedilmesi; talimat benzeri örüntülerin ön işleme
-aşamasında işaretlenmesi. Ayrıca tespit atlatma amaçlı yeniden yazım ve gerçek bir kuruma
-sahte atıf yapma gibi saldırı biçimleri, değerlendirme kümesine bilinçli olarak eklenmiş
-düşmanca örneklerle sınanmaktadır.
+Sistem, düşmanın ürettiği metni işleyen bir dil modeli içerdiğinden dolaylı komut
+enjeksiyonuna açık bir yüzeye sahiptir: gönderi metnine gömülen "önceki talimatları yok say"
+gibi ifadeler modelin davranışını değiştirmeyi hedefleyebilir.
+
+| Tehdit | Önlem |
+|---|---|
+| Dolaylı komut enjeksiyonu | İçerik model istemine talimat değil, ayrı kanaldan veri olarak geçirilir |
+| Şema dışı / manipüle edilmiş çıktı | Model yapılandırılmış çıktı üretmeye zorlanır, şema dışı çıktı reddedilir |
+| Talimat benzeri örüntüler | Ön işleme aşamasında işaretlenir |
+| Tespit atlatma amaçlı yeniden yazım | Değerlendirme kümesine bilinçli düşmanca örnekler eklenir |
+| Sahte kurum atfı | Aynı şekilde düşmanca örneklerle sınanır |
 
 ---
 
@@ -225,21 +206,11 @@ düşmanca örneklerle sınanmaktadır.
 
 ![Şekil 7. Üç temel kullanıcı akışı](gorseller/g6-kullanici-akislari.png)
 
-**Akış 1 — Bağlam edinme.** Kullanıcı akışında bir gönderiyle karşılaşır → gönderinin
-altında ayrıştırılmış güven kartı görünür → kullanıcı "Kanıt" düğmesine dokunur → gönderideki
-iddialar tek tek, kaynak ve kanıt durumlarıyla listelenir → "Karşı görüşler" seçeneğiyle
-aynı konudaki farklı bulgular, kanıt düzeyleri belirtilerek sunulur.
-
-**Akış 2 — Akış politikasının tanımlanması.** Kullanıcı doğal dille isteğini yazar
-("son zamanlarda çok fazla tartışmalı içerik görüyorum") → sistem isteği yorumlayıp somut
-bir politika önerir ("yüksek manipülasyon riskli içerikleri azaltayım, siyasi içeriği
-tamamen kaldırmayayım") → kullanıcı onaylar → politika yürürlüğe girer ve ayarlar ekranında
-düzenlenebilir bir madde olarak görünür.
-
-**Akış 3 — Filtrelenenlerin denetimi.** Kullanıcı "Filtrelenenler" çekmecesini açar →
-aşağı sıralanan içerikler, hangi politika nedeniyle ve hangi sinyale dayanarak sıralamada
-geriye alındığı belirtilerek listelenir → kullanıcı tek işlemle içeriği geri getirebilir
-veya politikayı gevşetebilir.
+| Akış | Örnek tetikleyici | Sonuç |
+|---|---|---|
+| 1 — Bağlam edinme | Kullanıcı "Kanıt" düğmesine dokunur | İddialar kaynak ve kanıt durumuyla listelenir; "Karşı görüşler" farklı bulguları kanıt düzeyiyle gösterir |
+| 2 — Akış politikası tanımlama | "Son zamanlarda çok fazla tartışmalı içerik görüyorum" | Sistem somut politika önerir ("manipülasyon riskli içeriği azalt"), kullanıcı onaylar, politika ayarlarda düzenlenebilir kalır |
+| 3 — Filtrelenenlerin denetimi | Kullanıcı "Filtrelenenler" çekmecesini açar | Aşağı sıralanan içerikler gerekçesiyle listelenir; tek işlemle geri getirilir veya politika gevşetilir |
 
 ### Arayüz tasarım kararları
 
@@ -257,28 +228,18 @@ veya politikayı gevşetebilir.
 
 ### Erişilebilirlik yaklaşımı
 
-Arayüz WCAG 2.2 AA düzeyi hedeflenerek tasarlanmaktadır.
+Arayüz **WCAG 2.2 AA** düzeyi hedeflenerek tasarlanmaktadır:
 
-**Renkten bağımsız bilgi.** Güven düzeyi hiçbir yerde yalnızca renkle kodlanmaz; her
-durum renk, ikon ve metin etiketi olmak üzere üç kanaldan birden aktarılır. Bu, renk
-körlüğü olan kullanıcılar için işlevsel bir gerekliliktir.
+| Boyut | Yaklaşım |
+|---|---|
+| Renkten bağımsız bilgi | Güven düzeyi renk + ikon + metin etiketi olmak üzere üç kanaldan birden aktarılır |
+| Kontrast ve ölçek | AA eşiğini karşılayan kontrast; işletim sistemi yazı boyutu ayarına uyum |
+| Ekran okuyucu uyumu | Her boyut anlamlı etiketle okunur ("kaynak kalitesi: yüksek"); ikon denetimler metin alternatifi taşır |
+| Dokunma hedefleri | Motor becerisi kısıtlı kullanıcılar için asgari dokunma alanı |
+| Bilişsel erişilebilirlik | Kanıt kartı varsayılan olarak özet açılır; gündelik dil kullanılır |
 
-**Kontrast ve ölçek.** Metin ve arka plan arasındaki kontrast oranları AA eşiğini
-karşılayacak biçimde seçilir; kullanıcının işletim sistemi düzeyinde belirlediği yazı
-boyutu ayarına uyum sağlanır.
-
-**Ekran okuyucu uyumu.** Güven kartındaki her boyut anlamlı bir etiketle işaretlenir;
-ekran okuyucu "güven kartı" yerine "kaynak kalitesi: yüksek, kanıt uyumu: orta" biçiminde
-okur. Yalnızca ikondan oluşan denetimlerin tamamı metin alternatifi taşır.
-
-**Dokunma hedefleri.** Etkileşimli öğeler, motor becerileri kısıtlı kullanıcılar için
-önerilen asgari dokunma alanı boyutunu karşılar.
-
-**Bilişsel erişilebilirlik.** Kanıt kartı varsayılan olarak özet düzeyinde açılır;
-ayrıntı isteğe bağlıdır. Açıklama metinleri teknik terim yerine gündelik dille yazılır.
-Bu, sistemin ulaşmayı hedeflediği kesim düşünüldüğünde işlevsel bir gerekliliktir:
-doğrulama alışkanlığı olmayan kullanıcılar aynı zamanda karmaşık arayüzden en çok
-etkilenen kesimdir.
+Bu son madde özellikle belirleyicidir: doğrulama alışkanlığı olmayan kullanıcılar, karmaşık
+arayüzden en çok etkilenen kesimle büyük ölçüde örtüşür.
 
 ### Kullanılabilirlik testi
 

@@ -12,41 +12,33 @@
 ### Gelir modeli
 
 TrustShield, son kullanıcıdan ücret almayan ancak üç ayrı kanaldan gelir üretebilen bir
-yapıda kurgulanmıştır. Bu tercih ürünün amacıyla tutarlıdır: güvenilirlik bilgisinin
-ödeme gücüne bağlı hâle gelmesi, sistemin en çok fayda sağlayacağı kesimi dışarıda
-bırakırdı.
+yapıda kurgulanmıştır — güvenilirlik bilgisinin ödeme gücüne bağlı hâle gelmesi, sistemin
+en çok fayda sağlayacağı kesimi dışarıda bırakırdı.
 
 ![Şekil 12. Üç kanallı gelir modeli](gorseller/g13-gelir-modeli.png)
 
-Birincil kanal platform lisansıdır; ürün NSosyal için geliştirildiğinden ilk müşteri ile
-ilk kullanıcı kitlesi aynı entegrasyonla kazanılır. Kurumsal API kanalı ise aynı
-altyapının ek geliştirme maliyeti olmadan farklı bir pazara açılmasını sağlar: koordineli
-yayılım tespiti, itibar yönetimi ve kriz iletişimi alanlarında doğrudan karşılığı olan bir
-ihtiyaçtır.
+Platform lisansı birincil kanaldır; ürün NSosyal için geliştirildiğinden ilk müşteri ile ilk
+kullanıcı kitlesi aynı entegrasyonla kazanılır. Kurumsal API, aynı altyapıyı ek geliştirme
+maliyeti olmadan koordineli yayılım tespiti, itibar yönetimi ve kriz iletişimi pazarına açar.
 
 ### Sektöre ve ülke ekonomisine katma değer
 
-Projenin ekonomik katma değeri üç başlıkta toplanmaktadır.
+Projenin ekonomik katma değeri üç başlıkta toplanmaktadır:
 
-**Teknolojik bağımsızlık.** İçerik doğrulama, yapay zekâ üretimi tespiti ve itibar
-izleme alanındaki ticari çözümlerin tamamına yakını yurt dışı kaynaklıdır ve Türkçe
-başarımları sınırlıdır. Yerli bir güven altyapısı, hem dışa bağımlılığı azaltır hem de
-Türkçe için optimize edilmiş bir çözüm sunar.
-
-**Birikim ve insan kaynağı.** Proje kapsamında Türkçe doğal dil işleme, çok modlu analiz
-ve zamansal çizge öğrenmesi alanlarında uygulamalı birikim oluşmaktadır. Oluşturulan
-Türkçe değerlendirme kümesi, projeden bağımsız olarak da kullanılabilecek bir kaynaktır.
-
-**İhracat potansiyeli.** Sistemin çekirdeği dile ve platforma bağımlı olmayan bir mimari
-üzerine kurulduğundan, farklı dil ve platformlara uyarlanarak yurt dışına açılabilir.
+| Katma değer | Açıklama |
+|---|---|
+| Teknolojik bağımsızlık | İçerik doğrulama ve itibar izleme çözümlerinin çoğu yurt dışı kaynaklı, Türkçe başarımı sınırlı; yerli altyapı bağımlılığı azaltır |
+| Birikim ve insan kaynağı | Türkçe DL işleme, çok modlu analiz ve zamansal çizge öğrenmesinde uygulamalı birikim; Türkçe değerlendirme kümesi projeden bağımsız da kullanılabilir |
+| İhracat potansiyeli | Çekirdek mimari dile/platforma bağımlı değil; farklı dil ve platformlara uyarlanabilir |
 
 ### İş birliği potansiyeli
 
-Projenin doğası gereği kurulabilecek stratejik iş birlikleri şunlardır: bağımsız doğrulama
-kuruluşlarıyla doğrulanmış iddia veri paylaşımı; üniversiteler ve araştırma merkezleriyle
-model geliştirme ve veri kümesi genişletme; kamu kurumlarıyla afet ve kriz dönemlerinde
-resmî bilgi kaynaklarına öncelikli erişim; içerik köken standardı geliştiren uluslararası
-girişimlerle uyumluluk çalışmaları.
+| Ortak | İş birliği |
+|---|---|
+| Bağımsız doğrulama kuruluşları | Doğrulanmış iddia veri paylaşımı |
+| Üniversiteler ve araştırma merkezleri | Model geliştirme, veri kümesi genişletme |
+| Kamu kurumları | Afet/kriz dönemlerinde resmî bilgi kaynaklarına öncelikli erişim |
+| Uluslararası köken standardı girişimleri | Uyumluluk çalışmaları |
 
 ## 6.2. Finansal, Teknik ve Sosyal Sürdürülebilirlik
 
@@ -55,43 +47,37 @@ girişimlerle uyumluluk çalışmaları.
 ![Şekil 13. Önbellek isabet oranı ile birim maliyet ilişkisi](gorseller/g14-birim-maliyet.png)
 
 Sistemin işletme maliyeti, kademeli mimari sayesinde kullanıcı sayısıyla doğrusal olarak
-artmaz. Maliyet, gösterim sayısına değil benzersiz iddia sayısına bağlıdır; kullanıcı
-tabanı büyüdükçe doğrulama önbelleğinin isabet oranı yükselir ve kullanıcı başına düşen
-birim maliyet düşer. Bu, ölçek büyüdükçe kârlılığın iyileştiği bir maliyet yapısı anlamına
-gelir. Cihaz üstü ön filtrenin sunucuya ulaşan istek hacmini kaynağında sınırlaması da
-aynı yönde çalışır.
+artmaz: maliyet gösterim sayısına değil **benzersiz iddia sayısına** bağlıdır. Kullanıcı
+tabanı büyüdükçe önbellek isabet oranı yükselir ve birim maliyet düşer — ölçek büyüdükçe
+kârlılığın iyileştiği bir yapı.
 
 ### Teknik sürdürülebilirlik
 
 Sistem, her analiz motorunun bağımsız olarak güncellenebileceği modüler bir yapıda
-tasarlanmıştır; bir modelin yenisiyle değiştirilmesi diğer bileşenleri etkilemez. Bu,
-hızla değişen bir alanda kritik bir gerekliliktir.
+tasarlanmıştır; bir modelin yenisiyle değiştirilmesi diğer bileşenleri etkilemez. Bakım
+planı üç unsurdan oluşur:
 
-Bakım planı üç unsurdan oluşur. Birincisi **düzenli yeniden eğitimdir**: yapay zekâ
-üretimi tespiti başta olmak üzere modellerin başarımı, yeni üretim modelleri yaygınlaştıkça
-düşer; bu nedenle değerlendirme kümesi sürekli genişletilir ve modeller belirli aralıklarla
-yeniden eğitilir. İkincisi **başarım izlemedir**: canlı ortamda kalibrasyon sapması ve
-yanlış pozitif oranı sürekli ölçülür, eşik aşıldığında müdahale edilir. Üçüncüsü
-**düşmanca uyuma karşı tazelemedir**: tespit edilmekten kaçınmak isteyen aktörler
-davranışlarını değiştireceğinden, saldırı örüntüleri düzenli olarak değerlendirme kümesine
-eklenir.
+| Unsur | Uygulama |
+|---|---|
+| Düzenli yeniden eğitim | Yeni üretim modelleri yaygınlaştıkça başarım düşer; değerlendirme kümesi genişletilir, modeller belirli aralıklarla yeniden eğitilir |
+| Başarım izleme | Canlı ortamda kalibrasyon sapması ve yanlış pozitif oranı sürekli ölçülür, eşik aşıldığında müdahale edilir |
+| Düşmanca uyuma karşı tazeleme | Tespitten kaçınmak isteyen aktörlerin davranış değişikliği; saldırı örüntüleri düzenli olarak değerlendirme kümesine eklenir |
 
 ### Sosyal sürdürülebilirlik ve değişen ihtiyaçlara uyum
 
 Sistemin uzun vadede kabul görmesi, kullanıcının onu bir denetim aracı değil bir yardımcı
-olarak görmesine bağlıdır. Bunu sağlayan üç tasarım kararı kalıcıdır: içerik silinmez,
-yalnızca bağlam eklenir; her politika kullanıcı tarafından değiştirilebilir ve geri
-alınabilir; aşağı sıralanan içerik gerekçesiyle birlikte görünür kalır.
+olarak görmesine bağlıdır:
 
-Buna ek olarak, yanlış işaretlenen içerik için bir **itiraz mekanizması** öngörülmektedir.
-Skoruna itiraz eden içerik üreticisi, değerlendirmenin hangi sinyallere dayandığını görebilir
-ve yeniden inceleme talep edebilir; itiraz sonuçları model iyileştirmesine geri beslenir.
-Otomatik bir sistemin bireyler üzerinde sonuç doğurması durumunda düzeltme yolunun açık
-olması, sistemin sosyal meşruiyeti açısından zorunludur.
+| Kalıcı tasarım kararı | Etkisi |
+|---|---|
+| İçerik silinmez, yalnızca bağlam eklenir | Kullanıcı güveni korunur |
+| Her politika kullanıcı tarafından değiştirilebilir ve geri alınabilir | Denetim kullanıcıda kalır |
+| Aşağı sıralanan içerik gerekçesiyle görünür kalır | Şeffaflık sağlanır |
+| **İtiraz mekanizması** — yanlış işaretlenen içerik üreticisi hangi sinyallere dayanıldığını görüp yeniden inceleme talep edebilir | Otomatik kararın düzeltme yolu açık kalır; sonuçlar model iyileştirmesine geri beslenir |
 
-Değişen kullanıcı ihtiyaçlarına uyum, kullanıcı politikalarının doğal dille tanımlanabilir
-olmasıyla sağlanır: yeni bir ihtiyaç ortaya çıktığında arayüze yeni bir ayar eklemek
-gerekmez, kullanıcı ihtiyacını ifade eder ve sistem karşılığını üretir.
+Değişen kullanıcı ihtiyaçlarına uyum, politikaların doğal dille tanımlanabilir olmasıyla
+sağlanır: yeni bir ihtiyaç için arayüze ayar eklemek gerekmez, kullanıcı ihtiyacını ifade
+eder ve sistem karşılığını üretir.
 
 ---
 
@@ -161,13 +147,12 @@ farklı yetkinlikler gerektirdiğinden, ekip bilinçli olarak çok disiplinli ku
 
 ### Disiplinlerin projeye katkısı
 
-Ekibin çok disiplinli yapısı, projenin doğasından kaynaklanan bir gerekliliktir. Yapay zekâ
-ve veri bilimi yetkinlikleri analiz motorlarının geliştirilmesini; yazılım geliştirme
-yetkinliği kademeli mimarinin ve cihaz üstü çıkarımın hayata geçirilmesini; kullanıcı
-deneyimi yetkinliği ise teknik çıktının kullanıcı için anlaşılır bilgiye dönüştürülmesini
-sağlamaktadır. Son madde projede özellikle belirleyicidir: doğru bir analiz sonucunun
-kullanıcı tarafından anlaşılmaması hâlinde ürünün toplumsal faydası ortadan kalkar.
+| Yetkinlik | Projeye katkısı |
+|---|---|
+| Yapay zekâ ve veri bilimi | Analiz motorlarının geliştirilmesi |
+| Yazılım geliştirme | Kademeli mimari ve cihaz üstü çıkarımın hayata geçirilmesi |
+| Kullanıcı deneyimi | Teknik çıktının kullanıcı için anlaşılır bilgiye dönüştürülmesi — doğru bir analiz sonucu anlaşılmazsa ürünün toplumsal faydası ortadan kalkar |
 
 İş paketleri üyeler arasında, her paketin birincil sorumlusu belirlenecek biçimde
-dağıtılmıştır. Modeller arası bağımlılık taşıyan İP-4 ve İP-5 ile prototip geliştirme
-paketi İP-6, haftalık eşgüdüm toplantılarıyla senkronize edilmektedir.
+dağıtılmıştır. Bağımlılık taşıyan İP-4/İP-5 ile prototip paketi İP-6, haftalık eşgüdüm
+toplantılarıyla senkronize edilmektedir.
