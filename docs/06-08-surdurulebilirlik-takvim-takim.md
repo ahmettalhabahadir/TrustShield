@@ -1,7 +1,7 @@
 # 6-7-8. SÜRDÜRÜLEBİLİRLİK, PROJE TAKVİMİ VE TAKIM YAPISI
 
 > Toplam 15 puan. Bütçe: Bölüm 6 için 2,5 sayfa, Bölüm 7 için 1,5 sayfa, Bölüm 8 için
-> 1 sayfa. **[DOLDURUN: ...]** işaretli yerler takıma özgüdür.
+> 1 sayfa.
 
 ---
 
@@ -94,7 +94,7 @@ uyumludur.
 | İP-6 | Why Engine ve User Control | Gösterim gerekçesi üretimi, doğal dille akış politikası | Eylül 2026 |
 | İP-7 | Arayüz (UI) | Güven kartı, filtrelenenler çekmecesi, kullanıcı akışları | Ağustos – Eylül 2026 |
 | İP-8 | Doğrulama ve test | Başarım ölçümü, kalibrasyon, kullanılabilirlik testi | Eylül 2026 |
-| İP-9 | Optimizasyon, raporlama ve sunum | Gecikme/maliyet ince ayarı, final raporu, demo videosu | Eylül 2026 |
+| İP-9 | Optimizasyon ve final sunum hazırlığı | Gecikme/maliyet ince ayarı, sunum materyali, demo videosu | Eylül 2026 |
 
 ### Zaman çizelgesi
 
@@ -123,16 +123,9 @@ Takım, şartnamenin izin verdiği asgari büyüklükte, 2 kişiden oluşmaktad�
 
 | Üye | Disiplin | Rol | Sorumlu Olduğu İş Paketleri |
 |---|---|---|---|
-| Üye 1 (Takım Kaptanı) | **[DOLDURUN]** | Ürün yönetimi, çekirdek altyapı, Evidence/Risk Engine, raporlama | İP-1, İP-2, İP-3, İP-5, İP-9 |
-| Üye 2 | **[DOLDURUN]** | Origin Engine, Why/User Control, arayüz, testler | İP-4, İP-6, İP-7, İP-8 |
-| Danışman *(varsa)* | **[DOLDURUN]** | Teknik ve akademik yönlendirme | — |
+| Üye 1 (Takım Kaptanı) | Bilgisayar Mühendisliği | Ürün yönetimi, çekirdek altyapı, Evidence/Risk Engine, raporlama | İP-1, İP-2, İP-3, İP-5, İP-9 |
+| Üye 2 | Bilgisayar Mühendisliği | Origin Engine, Why/User Control, arayüz, testler | İP-4, İP-6, İP-7, İP-8 |
 
-> **[DOLDURUN: Disiplin sütununu doldurun — şablon kuralı gereği isim/fotoğraf yazılmaz,
-> yalnızca disiplin yazılır. Danışmanınız yoksa o satırı kaldırın.]**
-
-### Disiplinlerin projeye katkısı
-
-İki kişilik ekip, aralarında hem yapay zekâ/veri hem yazılım/arayüz yetkinliklerini
-kapsayacak şekilde bölünmüştür. İş paketleri her paketin birincil sorumlusu belirlenecek
-biçimde dağıtılmış, bağımlılık taşıyan paketler haftalık eşgüdüm toplantılarıyla
-senkronize edilmektedir.
+İki kişilik ekip, yapay zekâ/veri ve yazılım/arayüz yetkinliklerini kapsayacak şekilde
+bölünmüştür; bağımlılık taşıyan iş paketleri haftalık eşgüdüm toplantılarıyla senkronize
+edilmektedir.

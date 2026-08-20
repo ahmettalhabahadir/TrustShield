@@ -15,7 +15,7 @@ alana dayanmaktadır:
 |---|---|
 | İddia çıkarımı ve doğal dil çıkarımı | Evidence Engine — kanıt–iddia eşleştirmesi |
 | Çok modlu içerik köken analizi | Origin Engine — YZ üretimi sinyali ve köken doğrulama |
-| Zamansal çizge öğrenmesi | Risk Engine — koordinasyon tespiti; davranış ritmi statik özniteliklerin yakalayamadığı bir sinyaldir [7] |
+| Zamansal çizge öğrenmesi [11] | Risk Engine — koordinasyon tespitinin akademik temeli (Future); davranış ritmi statik özniteliklerin yakalayamadığı bir sinyaldir [7] |
 
 ### Sistem mimarisi: Personal Social Trust Layer
 
@@ -34,20 +34,49 @@ kılar.
 
 ![Şekil 4. Kademeli filtreleme, derin analize ulaşan içerik oranını gönderilerin yalnızca %1,5'ine indiriyor.](gorseller/g2-kademeli-filtreleme.png)
 
+### Veri gizliliği ve mevzuat uyumu
+
+Mimari, Kişisel Verilerin Korunması Kanunu (KVKK) kapsamına girebilecek veri türlerini
+tasarım aşamasından itibaren sınırlamayı hedefler:
+
+| İlke | Uygulama |
+|---|---|
+| Veri minimizasyonu | Sunucuda yalnızca gönderi içeriği ve herkese açık meta veri işlenir; kullanıcı kimliğiyle ilişkilendirilmez |
+| Cihazda kalan kişisel veri | User Control'ün akış tercihleri ve etkileşim geçmişi sunucuya hiç iletilmez |
+| Amaç sınırlılığı | Analiz çıktıları yalnızca kanıt/köken/risk gösterimi ve akış sıralaması için kullanılır |
+
+Prototip aşamasında gerçek kullanıcı verisi işlenmemektedir (bkz. Bölüm 3.1 Veri kümeleri).
+Gerçek kullanıcılarla pilot teste geçildiğinde aydınlatma metni, açık rıza mekanizması ve
+veri saklama süresi sınırlaması ayrıca uygulanacaktır — bu, MVP kapsamının ötesinde,
+kullanıcı verisiyle çalışmanın önkoşuludur.
+
 ### Analiz motorları
 
 | Motor | Girdi | Yöntem | Çıktı |
 |---|---|---|---|
 | **Evidence Engine** | Gönderi metni, bağlantılar | İddia çıkarımı, vektör tabanlı kanıt getirme, doğal dil çıkarımı ile kanıt–iddia uyumu | İddia listesi, kanıt uyum durumu, kaynak kalitesi |
 | **Origin Engine** | Görsel, video karesi, metin | C2PA meta verisi varsa doğrulama; yoksa YZ üretimi olasılık sinyali + OCR | Köken durumu: doğrulanmış / olasılık sinyali / belirsiz |
-| **Risk Engine** | Gönderi metni + hesap–gönderi–etkileşim çizgesi | Manipülatif dil sınıflandırması ve zamansal çizge ile koordineli davranış tespiti | Manipülasyon riski ve koordinasyon sinyali — **ayrı ayrı**, güven düzeyiyle birlikte |
+| **Risk Engine** | Gönderi metni + hesap–gönderi–etkileşim çizgesi | Manipülatif dil sınıflandırması; koordineli davranış için MVP'de kural/istatistik tabanlı çizge skorlama (TGN — Future, bkz. not) | Manipülasyon riski ve koordinasyon sinyali — **ayrı ayrı**, güven düzeyiyle birlikte |
 
 Üç motorun çıktısı, gösterim zincirinin son iki adımını besler:
 
 | Aşama | Girdi | Çıktı |
 |---|---|---|
-| **Why Engine** | Üç motorun çıktısı + ilgi alanı/takip sinyalleri | "Neden bunu görüyorsun?" açıklaması, gündelik dilde |
-| **User Control** | Kullanıcının doğal dil komutu (ör. "teknoloji haberlerini artır") | Akış politikası güncellemesi, cihazda uygulanır |
+| **Why Engine** | Üç motorun çıktısı + gözlemlenebilir ilgi alanı/takip sinyalleri | "Neden bunu görüyorsun?" açıklaması, gündelik dilde |
+| **User Control** | Kullanıcının doğal dil komutu (ör. "teknoloji haberlerini artır") | Yapılandırılmış akış politikası, cihazda sıralamaya uygulanır |
+
+**Why Engine gerçek platform öneri algoritmasını açıklamaz.** Bağımsız prototipte
+platformun (örn. NSosyal, Instagram, X) gösterim kararına erişim yoktur. MVP'de Why Engine,
+yalnızca gözlemlenebilir sinyallerden (takip edilen hesap, geçmiş etkileşim, konu
+benzerliği) olası bir gösterim gerekçesi üretir — platformun gerçek kararını değil. Gerçek
+bir platform entegrasyonunda, platformun sağladığı öneri metadata/API sinyalleri kullanılır
+ve açıklama bu ölçüde kesinleşir.
+
+**User Control'ün çalışma mekanizması.** Doğal dil komutu LLM ile niyet ayrıştırmasından
+geçer ve konu/etiket ağırlıklarından oluşan yapılandırılmış bir politikaya dönüşür (örn.
+"politika: siyaset −0,5, teknoloji +0,3"); bu politika cihazda saklanır ve kişisel sıralama
+fonksiyonuna doğrudan girdi olarak uygulanır. Politika ayarlar ekranından görülebilir ve
+elle düzenlenebilir.
 
 Çıktılar tek bir puana indirgenmez. Bir içerik doğru olup manipülatif, yapay zekâ ile
 üretilmiş olup isabetli olabilir; **manipülasyon duygu içermekle, bot olmak koordinasyonla,
@@ -58,11 +87,28 @@ Evidence Engine'in kanıt getirme katmanı üç kaynak grubuna dayanır: resmî 
 (Resmî Gazete, TÜİK, AFAD, DSÖ), açık doğrulama arşivleri (Teyit.org ve benzeri kuruluşların
 ClaimReview kayıtları) ve vektör tabanlı semantik arama.
 
+### Örnek uçtan uca senaryo
+
+Kullanıcı akışında şu gönderiyle karşılaşır: "X ilinde yarın tüm okullar tatil edildi."
+TrustShield kartında:
+
+| Aşama | Örnek çıktı |
+|---|---|
+| Evidence | Kısmi kanıt — resmî kaynak yalnızca belirli ilçeleri kapsıyor |
+| Origin | Belirsiz — metin tabanlı gönderi, C2PA meta verisi yok |
+| Risk | Yüksek paylaşım yoğunluğu; koordinasyon sinyali düşük güvenle işaretli |
+| Why | "Takip ettiğiniz gündem hesapları ve son etkileşimleriniz nedeniyle gösterildi." |
+| User Control | Kullanıcı "doğrulanmamış gündem içeriklerini azalt" der; akış politikası güncellenir |
+
+Bu örnek, motorların ayrı ayrı çalışıp tek bir kartta birleştiğini ve sonucun kesin bir
+hüküm değil kanıt + gerekçe + denetim olduğunu somutlaştırır.
+
 ### MVP ve gelecek kapsamı
 
-İki kişilik bir ekiple dört yeteneğin tamamını aynı olgunlukta geliştirmek gerçekçi
-değildir. Aşağıdaki tablo, prototip aşamasında neyin gerçekten çalıştığını ve neyin
-sonraki aşamaya bırakıldığını açıkça ayırır — rapor ve sunumda bu ayrım gizlenmez.
+İki kişilik bir ekiple beş yeteneğin tamamını aynı olgunlukta geliştirmek gerçekçi
+değildir; demo çekirdeği (Evidence + Why + User Control) Bölüm 1.1'de tanımlanmıştır.
+Aşağıdaki tablo, prototip aşamasında neyin gerçekten çalıştığını ve neyin sonraki aşamaya
+bırakıldığını açıkça ayırır — rapor ve sunumda bu ayrım gizlenmez.
 
 | Bileşen | MVP (prototip) | Gelecek |
 |---|---|---|
@@ -71,7 +117,7 @@ sonraki aşamaya bırakıldığını açıkça ayırır — rapor ve sunumda bu 
 | Source analysis (kaynak analizi) | Gerçek prototip | Genişletilecek |
 | AI origin (köken sinyali) | Temel: C2PA kontrolü + olasılık sinyali | Gelişmiş piksel adli analiz (CNN/ViT) |
 | Manipulation detection | Prototip | Gelişmiş model |
-| Coordination detection | Kontrollü/sentetik demo senaryosu | Gerçek zamanlı çizge |
+| Coordination detection | Kural/istatistik tabanlı çizge skorlama, kontrollü/sentetik senaryo | TGN tabanlı zamansal çizge öğrenmesi |
 | Why am I seeing this | Gerçek prototip | Platform entegrasyonu |
 | Natural language feed control | Gerçek prototip | Gelişmiş kişiselleştirme |
 | On-device inference | Plan | Uygulama |
@@ -79,10 +125,11 @@ sonraki aşamaya bırakıldığını açıkça ayırır — rapor ve sunumda bu 
 
 ### Sistemin sınırları
 
-- Sistem gerçeğin mutlak hakemi değildir; kanıt ve bağlam sunar, hüküm vermez.
+Temel ilkeler Bölüm 1.1'de tanımlanmıştır (hakem değil kanıt sunucusu, "yetersiz kanıt"
+geçerli sonuçtur). Bunlara ek olarak:
+
 - YZ-üretimi tespiti %100 garanti değildir; olasılık ve güven aralığıyla ifade edilir.
 - Koordinasyon sinyali bir suçlama değildir; otomatik yaptırım tetiklemez.
-- "Yetersiz kanıt" geçerli ve beklenen bir sonuçtur, hata değildir.
 - Sistem kullanıcı adına içerik silmez veya hesap kapatmaz.
 - Kanaat ve normatif ifadeler otomatik olarak doğru/yanlış ilan edilmez.
 - MVP, yukarıdaki tabloda "Gelecek" işaretli bileşenlerde üretim olgunluğunda değildir.
@@ -94,11 +141,11 @@ sonraki aşamaya bırakıldığını açıkça ayırır — rapor ve sunumda bu 
 | İstemci | Flutter | Tek kod tabanından mobil ve web arayüzü |
 | Backend | Python, FastAPI | Model servis etme ve REST arayüzü |
 | Veri tabanı | PostgreSQL + pgvector | İlişkisel veri ve vektör aramayı tek sistemde tutar |
-| Türkçe dil işleme | Zemberek, BERTurk | Normalizasyon ve temel dil modeli — **yerli bileşen** |
+| Türkçe dil işleme | Zemberek (**yerli katkı**), BERTurk | Normalizasyon ve Türkçe odaklı temel dil modeli |
 | Dil modeli (ana) | Llama 3.1 8B Instruct, Türkçe LoRA ince ayarlı | İddia çıkarımı, kanıt karşılaştırma, açıklama üretimi |
-| Görsel model (ana) | CLIP-ViT-B/16 + Tesseract OCR | Görsel üretim sinyali, görsel içi metin |
+| Görsel model (ana) | CLIP-ViT-B/16 temsili + eğitilmiş sınıflandırma başlığı, Tesseract OCR | YZ-üretim olasılık sinyali (tek başına kanıt değil), görsel içi metin |
 | İçerik kökeni | C2PA / Content Credentials doğrulayıcı | Meta veri mevcutsa kriptografik kanıt (bkz. Origin Engine notu) |
-| Çizge yaklaşımı | TGN (Temporal Graph Networks) | Zamansal koordinasyon tespiti |
+| Çizge yaklaşımı | Kural/istatistik tabanlı çizge skorlama (MVP); TGN — Temporal Graph Networks (Future) | Koordinasyon sinyali; zamansal öğrenme gelecek işi (bkz. Risk Engine notu) |
 | Cihaz üstü çıkarım | ONNX Runtime Mobile | Ön filtre modelinin cihazda çalıştırılması |
 | Kuyruk ve önbellek | Redis | Asenkron derin analiz, doğrulama önbelleği |
 | Dağıtım | Docker | Taşınabilir, tekrarlanabilir kurulum |
@@ -106,17 +153,22 @@ sonraki aşamaya bırakıldığını açıkça ayırır — rapor ve sunumda bu 
 **Origin Engine'de C2PA kapsam sınırı.** Bugün viral içeriğin büyük kısmı C2PA meta verisi
 taşımaz; standardın endüstri benimsemesi henüz erken aşamadadır. Origin Engine bu nedenle
 MVP'de iki adımlı çalışır: meta veri varsa C2PA doğrulaması birincil kanıt olur; yoksa
-sistem CLIP tabanlı bir olasılık sinyaline döner ve belirsizliği açıkça gösterir. Gelişmiş
-piksel adli analiz (özel eğitilmiş CNN/ViT dedektörleri) MVP kapsamı dışında, gelecek işi
-olarak konumlandırılmıştır.
+sistem CLIP görsel temsilleri üzerine eğitilmiş bir sınıflandırma başlığından olasılık
+sinyaline döner ve belirsizliği açıkça gösterir — CLIP'in kendisi bir "YZ tespit edici"
+değildir, tek başına kanıt sayılmaz. Sonuç kullanıcıya **doğrulandı / muhtemelen YZ üretimi
+/ belirsiz** üç durumundan biri olarak sunulur. Gelişmiş piksel adli analiz (özel eğitilmiş
+CNN/ViT dedektörleri) MVP kapsamı dışında, gelecek işi olarak konumlandırılmıştır.
 
 **Risk Engine'de koordinasyon tespiti.** Gerçek kullanıcı grafiği olmadan gerçek koordineli
-ağlar tespit edildiği iddia edilmez. MVP, **kontrollü, sentetik, tekrarlanabilir**
-senaryolarla çalışır — örneğin 100 hesabın aynı URL'yi kısa bir zaman aralığında yüksek
-metin benzerliğiyle paylaştığı bir senaryo. Bu, "gerçek kullanıcıların bot olduğunu
-bulduk" şeklinde sunulmaz; **"Coordinated Activity Detection" (koordineli davranış tespiti)**
-olarak adlandırılır ve bot ile koordinasyon kavramları birbirinden ayrı tutulur: bir hesabın
-otomatik olması, koordineli hareket ettiği anlamına gelmez.
+ağlar tespit edildiği iddia edilmez. MVP, **kural/istatistik tabanlı çizge skorlama**
+(paylaşım zaman penceresi, metin benzerliği, hesap derecesi gibi basit özniteliklerle) ve
+**kontrollü, sentetik, tekrarlanabilir** senaryolarla çalışır — örneğin 100 hesabın aynı
+URL'yi kısa bir zaman aralığında yüksek metin benzerliğiyle paylaştığı bir senaryo. TGN
+tabanlı zamansal çizge öğrenmesi, gerçek ölçekli kullanıcı grafiği gerektirdiği için MVP
+kapsamı dışında, gelecek işi olarak konumlandırılmıştır. Bu, "gerçek kullanıcıların bot
+olduğunu bulduk" şeklinde sunulmaz; **"Coordinated Activity Detection" (koordineli davranış
+tespiti)** olarak adlandırılır ve bot ile koordinasyon kavramları birbirinden ayrı tutulur:
+bir hesabın otomatik olması, koordineli hareket ettiği anlamına gelmez.
 
 ### Veri kümeleri
 
@@ -130,7 +182,7 @@ yapılmaktadır.
 | LIAR | Etiketli siyasi iddialar | Doğruluk sınıflandırması |
 | FakeNewsNet / CoAID | Haber içeriği + sosyal bağlam | Yayılım ve içerik birlikte değerlendirme |
 | MuMiN | Çok modlu yanlış bilgi + sosyal çizge | Origin + Risk Engine birlikte doğrulama |
-| TwiBot-22 | Çizge yapılı bot tespiti | Risk Engine eğitimi ve karşılaştırma |
+| TwiBot-22 | Çizge yapılı bot tespiti | Yalnızca karşılaştırma referansı — bot ≠ koordinasyon ayrımını göstermek için; koordinasyon skorlama sentetik senaryo üzerinde çalışır |
 | Google Fact Check Tools (ClaimReview) | Kurumsal doğrulama kayıtları, Türkçe dâhil | Doğrulama önbelleğinin tohumlanması |
 | **Türkçe küme (özgün)** | Hedef 300 gönderi, elle etiketli | Türkçe **değerlendirme ve kalibrasyon** — model eğitim kümesi değil |
 
@@ -139,6 +191,11 @@ etiketlenen küme; iddia içerip içermediği, olgu/kanaat ayrımı, kanıt duru
 dil boyutlarında etiketlenmekte, en az iki bağımsız etiketleyici tarafından
 değerlendirilmektedir. Küme büyüklüğü, bir model eğitmek için değil Türkçe başarımı ölçmek
 ve kalibre etmek için yeterlidir.
+
+**Etiketleme protokolü.** İki bağımsız etiketleyici aynı örnekleri etiketler;
+anlaşmazlıklar üçüncü bir değerlendirmeyle çözülür. Etiketleyiciler arası uyum Cohen's
+Kappa ile raporlanacaktır; uyumun düşük çıktığı boyutlarda (ör. olgu/kanaat ayrımı gibi
+öznel kararlar) etiketleme kılavuzu netleştirilip ilgili örnekler yeniden gözden geçirilir.
 
 ![Şekil 5. Yedi açık veri kümesi üç analiz motorunu besliyor; özgün Türkçe küme değerlendirme/kalibrasyon amaçlıdır.](gorseller/g11-veri-motor.png)
 
@@ -182,8 +239,8 @@ yapıldıkça "Measured" sütunu eklenip güncellenecektir.
 | Evidence — kanıt getirme | pgvector + semantik arama | FEVER, ClaimReview | Recall@5 | ≥ 0,80 |
 | Evidence — kanıt–iddia uyumu | Çok dilli doğal dil çıkarımı modeli | FEVER, Türkçe küme | Makro F1 | ≥ 0,70 |
 | Risk — manipülatif dil | BERTurk (ince ayarlı) | Türkçe küme | Makro F1 | ≥ 0,75 |
-| Origin — YZ üretimi sinyali | CLIP-ViT-B/16 sınıflandırıcı | MuMiN | AUROC / kalibrasyon hatası | ≥ 0,85 / ≤ 0,05 |
-| Risk — koordinasyon tespiti | TGN | TwiBot-22, sentetik senaryo | Precision@k | ≥ 0,70 |
+| Origin — YZ üretimi sinyali | CLIP-ViT-B/16 temsili + eğitilmiş sınıflandırma başlığı | MuMiN | AUROC / kalibrasyon hatası | ≥ 0,85 / ≤ 0,05 |
+| Risk — koordinasyon tespiti (MVP) | Kural/istatistik tabanlı çizge skorlama | Sentetik senaryo | Precision@k | ≥ 0,70 |
 | Uçtan uca | — | — | Kademe bazında p50/p95 gecikme | Kademe 1-2 eşzamanlı, Kademe 3 asenkron |
 | Tüm bileşenler | — | — | Doğru içerikte yanlış pozitif oranı | ≤ 0,05 |
 
@@ -229,6 +286,21 @@ dışı sınamayla da kontrol edilir.
 | Küçük ekip / kapsam riski | Zamanında teslim edememe | MVP/Gelecek ayrımı (bkz. Bölüm 3.1), aşamalı geliştirme |
 | Platform erişimi belirsizliği | Uygulanabilirlik sorgusu | Bağımsız demo stratejisi (bkz. Bölüm 1.2 Varsayımlar) |
 | Kişisel veri işleme | Kullanıcı verisinin kötüye kullanımı | User Control cihazda çalışır; kişisel tercih verisi sunucuya taşınmaz |
+| Üçüncü taraf LLM/API sağlayıcısına bağımlılık | Maliyet artışı veya erişim kesintisi | Açık kaynak model (Llama ailesi) tercih edilir; sağlayıcı entegrasyonu mimaride izole edilmiştir |
+| Değerlendirme kümesinin küçük olması (n≈300) | Ölçülen başarımın gerçek dağılımı tam yansıtmaması | Sonuçlar güven aralığıyla raporlanır; küme aşamalı olarak büyütülür |
+
+### İzleme ve gözlemlenebilirlik
+
+Üretim ortamında sistemin sağlığı üç gösterge grubuyla izlenir:
+
+| Gösterge grubu | İzlenen | Eşik aşımında |
+|---|---|---|
+| Model kalitesi | Kalibrasyon hatası, yanlış pozitif oranı | Uyarı üretilir; ilgili model yeniden değerlendirmeye alınır |
+| Sistem performansı | Kademe bazında p50/p95 gecikme, kuyruk derinliği | Otomatik yatay ölçeklendirme tetiklenir |
+| Kullanıcı sinyali | İtiraz oranı, "yetersiz kanıt" oranı | İlgili içerik/kaynak sınıfı incelemeye alınır |
+
+Günlükler (log) kişisel veri içermeyecek biçimde tutulur; yalnızca model çıktısı, gecikme
+ve hata kodları kaydedilir.
 
 ---
 
@@ -281,4 +353,7 @@ protokolleri tanımlanmıştır. **Sonuç uydurulmamıştır.**
 | Kullanılabilirlik testi | 5-8 kişi | Üç görev (güven bilgisine ulaşma, akış politikası tanımlama, filtrelenen içeriği geri getirme); görev tamamlama oranı, görev başına süre, SUS anketi |
 | Kullanıcı araştırması | 15-20 kişi, 18-30 yaş aktif sosyal medya kullanıcısı | Doğruluk şüphesi sıklığı, doğrulama davranışı, güvenilirlik bilgisinin faydası — 5'li Likert + açık uçlu sorular |
 
-Sonuçlar ve bunlara karşılık yapılan tasarım değişiklikleri final raporuna eklenecektir.
+SUS puanı için hedef, literatürde "ortalama üstü" kabul edilen eşik olan 68'in üzerinde bir
+sonuçtur [12]; bu bir ölçüm sonucu değil, karşılaştırma referansıdır. Sonuçlar ve bunlara
+karşılık yapılan tasarım değişiklikleri mentörlük döneminde elde edilip final sunumda
+paylaşılacaktır.

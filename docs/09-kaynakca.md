@@ -55,3 +55,7 @@ https://ahrefs.com/blog/ai-statistics/
 [11] Rossi, E., Chamberlain, B., Frasca, F., Eynard, D., Monti, F., Bronstein, M.,
 (2020) Temporal Graph Networks for Deep Learning on Dynamic Graphs, arXiv:2006.10637,
 Erişim: 14.08.2026, https://arxiv.org/abs/2006.10637
+
+[12] Bangor, A., Kortum, P., Miller, J., (2008) An Empirical Evaluation of the System
+Usability Scale, International Journal of Human-Computer Interaction, 24(6), 574-594,
+DOI: 10.1080/10447310802205776

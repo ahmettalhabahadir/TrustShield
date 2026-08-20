@@ -30,9 +30,9 @@ varsayımlar platform verisiyle doğrulandıkça güncellenecektir.
 
 ![Şekil 9. Örnek senaryoda kademeli filtreleme, günlük derin analiz hacmini naif yaklaşıma göre yaklaşık 830 kat azaltır (mimari tahmin).](gorseller/g8-islem-hacmi.png)
 
-*Varsayımlar: günlük 1.000.000 gönderi, gönderi başına ortalama 50 gösterim, Kademe 1
-eleme oranı %85, önbellek isabet oranı %60. Bu bir simülasyondur, ölçülmüş bir üretim
-verisi değildir.*
+Varsayımlar: günlük 1.000.000 gönderi, gönderi başına ortalama 50 gösterim, Kademe 1
+eleme oranı %85, önbellek isabet oranı %60. **Bu bir simülasyondur, ölçülmüş bir üretim
+verisi değildir.**
 
 Bu senaryoda ağır modeller toplam gönderilerin yalnızca **%6'sı** için çalışır. Platform
 büyüdükçe önbellek isabet oranının yükselmesi beklenir, dolayısıyla birim maliyetin
@@ -51,6 +51,14 @@ görünür, ayrıntılı kanıt kartı analiz tamamlandıkça dolar.
 | Bağlam tüketimi | Güven kartı ve kanıt görüntüleme oranı |
 | Kullanıcı denetiminin benimsenmesi (User Control) | Akış politikası tanımlayan kullanıcı oranı |
 | Sistem doğruluğu | Kullanıcı itirazı sonucu düzeltilen skor oranı |
+
+### Ölçeklenebilirlik testi planı
+
+Kademeli mimarinin yukarıdaki varsayımları, gerçek yük testiyle doğrulanmadan üretim
+iddiası olarak sunulmaz. Planlanan doğrulama üç adımdır: (1) sabit bir benzersiz-iddia
+oranında artan istek hacminde p95 gecikmenin izlenmesi, (2) Kademe 3 kuyruğunun yığılma
+noktasının belirlenmesi, (3) yatay ölçeklendirmenin (ek servis örneği eklenmesi)
+gecikmeyi telafi edip etmediğinin ölçülmesi. Sonuçlar final sunumda paylaşılacaktır.
 
 ---
 
@@ -82,8 +90,8 @@ testlerle sınırlıdır.
 
 Ürünün hedef kitlenin gerçek ihtiyacına karşılık geldiğini doğrulamak amacıyla 15-20
 katılımcıyla (birincil kitle profiline uygun) bir kullanıcı araştırması yürütülecektir —
-protokol Bölüm 3.3'te tanımlıdır. Sonuçlar henüz mevcut değildir; final raporuna
-eklenecektir.
+protokol Bölüm 3.3'te tanımlıdır. Sonuçlar henüz mevcut değildir; mentörlük döneminde
+elde edilip final sunumda paylaşılacaktır.
 
 ---
 
@@ -105,8 +113,9 @@ Bileşenlerin tamamı bugün üretim ortamlarında kullanılan, olgunlaşmış t
 kurulabilir durumdadır. Projenin özgünlüğü yeni bir model mimarisi icat etmekte değil, bu
 bileşenleri maliyeti denetim altında tutan bir hatta birleştirmesindedir. Mevcut teknoloji
 hazırlık düzeyi **TRL 3** (kavram doğrulaması ve mimari tasarım tamamlanmış; bileşen
-düzeyinde doğrulama prototip aşamasında hedeflenmektedir) olarak değerlendirilmektedir;
-Bölüm 3.1'deki MVP stratejisiyle final aşamasına kadar TRL 4-5'e ilerlemesi hedeflenir.
+düzeyinde doğrulama prototip aşamasında hedeflenmektedir) olarak değerlendirilmektedir.
+Final aşamasında, Bölüm 3.1'deki MVP çekirdeğinin (Evidence + Why + User Control) uçtan uca
+çalışan bir prototip ve ölçülmüş model performansıyla desteklenmesi hedeflenmektedir.
 
 | Faktör | Durum |
 |---|---|

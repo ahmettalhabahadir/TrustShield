@@ -59,35 +59,15 @@ etmektedir.
 ### Ana birleştirici kavram
 
 Dört ayrı motor yerine, tek bir **Personal Social Trust Layer** (kişisel sosyal güven
-katmanı):
-
-```
-                    CONTENT
-                       │
-        ┌──────────────┴──────────────┐
-        │  PERSONAL SOCIAL TRUST LAYER │
-        └──────────────┬──────────────┘
-                       │
-      ┌────────────────┼────────────────┐
-      ▼                ▼                ▼
-  EVIDENCE          ORIGIN            RISK
-  ENGINE            ENGINE            ENGINE
-      │                │                │
-      └────────────────┼────────────────┘
-                       ▼
-              WHY AM I SEEING THIS?
-                       │
-                       ▼
-                 USER CONTROL
-                       │
-                       ▼
-                PERSONAL FEED
-```
+katmanı) kullanılır (bkz. Şekil 0; ayrıntılı mimari Şekil 3, Bölüm 3.1): içerik önce
+Evidence, Origin ve Risk motorlarından geçer; üç motorun çıktısı Why Engine ile gösterim
+gerekçesine, User Control ile kullanıcı eylemine bağlanır.
 
 Üç analiz motoru (Evidence, Origin, Risk) içeriği değerlendirir; Why Engine bu
 değerlendirmeyi kullanıcının gördüğü içerikle ilişkilendirip gerekçe üretir; User Control
-kullanıcının bu gerekçeye karşılık akışını doğal dille yeniden tanımlamasını sağlar.
-Mimari ayrıntıları Bölüm 3'tedir.
+kullanıcının bu gerekçeye karşılık akışını doğal dille yeniden tanımlamasını sağlar. Demo
+çekirdeği **Evidence + Why + User Control**'dür; Origin ve Risk bu çekirdeği güçlendiren
+analiz motorlarıdır (bkz. Bölüm 3.1).
 
 ## 1.2. Proje Kapsamı ve Yöntemi
 
@@ -158,7 +138,7 @@ küçük bir kısmının tümüyle yapay zekâ üretimi olduğunu göstermiştir
 
 Türkiye'de 16-74 yaş grubunda internet kullanım oranı %90,9'a yükselmiştir [2]; aynı
 dönemde habere duyulan genel güven %33 ile 2015'ten bu yana en düşük düzeye gerilemiş,
-kullanıcıların %36'sı haberi sosyal medya üzerinden paylaşır hâle gelmiştir [5]. Güvenin
+kullanıcıların %36'sı haberi sosyal medya üzerinden paylaşır hâle gelmiştir [5,6]. Güvenin
 düştüğü ancak paylaşımın sürdüğü bu ortam, bağlam sağlayan bir katmanın karşılayacağı
 ihtiyacın büyüklüğünü göstermektedir.
 
